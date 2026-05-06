@@ -1,0 +1,199 @@
+---
+title: "Best Free QR Code Generators 2026: 5 Tools Without Tracking"
+description: "Many 'free' QR generators secretly bake their tracking shortener into your QR code. Here are 5 generators that produce direct, untrackable QR codes — including 3 that work in your browser."
+date: "2026-05-04"
+dateModified: "2026-05-04"
+tags: ["calc", "review"]
+author: "Pick Rack"
+faq:
+  - q: "Why do some QR generators add tracking?"
+    a: "QR codes hold limited data; many generators replace your URL with their own short URL (qrtiger.com/abc123) that redirects to your URL. This lets them track every scan, sell analytics data, or charge for 'analytics dashboard'. Your QR code now depends on their service staying alive forever."
+  - q: "How do I check if a QR has tracking?"
+    a: "Open any QR scanner app on your phone. Scan the QR. If the URL shown matches what you originally entered, no tracking. If it shows a shortener domain (bit.ly, qrtiger.com, qrcodemonkey.com), tracking is in place. Pickrack and the recommended alternatives in this article encode your URL directly with no shortener."
+  - q: "What's a static vs dynamic QR code?"
+    a: "Static QR: data encoded directly into the QR pattern. Cannot be changed without printing a new QR. Free, no service dependency. Dynamic QR: a short URL is encoded; the short URL redirects to your destination. The destination can be changed without reprinting the QR. Requires a service subscription. Useful for marketing campaigns, but creates a service dependency."
+  - q: "What's error correction in QR codes?"
+    a: "QR codes have built-in redundancy at 4 levels: L (7%), M (15%), Q (25%), H (30%). Higher means more pattern can be damaged/obscured and still scan. Use L for clean digital displays, M as default for print, Q-H for outdoor signs that may weather, or for QR codes with logo overlay (the logo obscures part of the pattern)."
+  - q: "What format should I download for printing?"
+    a: "SVG for any size print (vector — scales perfectly to business cards through billboards). PNG for digital displays at known size (more universally supported in design tools). For most uses, download both — SVG for print/design, PNG for quick web embed."
+  - q: "Can I make a QR with my logo in the middle?"
+    a: "Yes — the QR code's error correction redundancy lets you obscure up to 30% of the pattern with a logo. Use error correction H (30%) so the QR remains scannable. Pickrack v1 doesn't auto-overlay logos; download SVG and overlay your logo in Figma/Photoshop. Most professional QR services charge for this; the result with manual overlay is identical."
+  - q: "How big does a printed QR need to be?"
+    a: "For phone scan from 30cm (table distance): 2cm × 2cm minimum. For 1m distance (poster): 5cm × 5cm. For 5m distance (billboard): 25cm × 25cm. Higher data density (longer URL) needs a larger physical size."
+  - q: "Will QR codes work on iPhone and Android?"
+    a: "Yes universally. Standard QR has been supported since 1994. iOS Camera (since iOS 11), Google Lens, and any QR scanner app all read standard QR. Pickrack uses standard QR (not micro QR or rMQR variants)."
+---
+
+QR codes are simple — they encode text or a URL as a scannable pattern. But many "free" QR generators have a hidden cost: they secretly replace your URL with their own tracking shortener. Your QR now depends on their service staying alive and exposes your scans to their analytics.
+
+This article tests 5 free QR generators and identifies which produce truly direct, untrackable QR codes.
+
+## Quick comparison
+
+| Tool | Tracking | Privacy | Customization | Best for |
+|---|---|---|---|---|
+| **Pickrack QR Generator** | **None — direct encoding** | Browser-side | Size, EC level | **Default choice** |
+| **QR Code Generator (qr-code-generator.com)** | None on free tier | Cloud | Yes | Web-based with templates |
+| **GoQR.me** | None | Cloud | Limited | Quick utility |
+| **QRCode Monkey** | None on free | Cloud | Logo overlay, colors | Branded QRs |
+| **QRTiger** | **Tracking by default** (unless paid) | Cloud | Many | Avoid — tracking |
+
+## 1. Pickrack QR Code Generator 🥇
+
+[**pickrack.com/tools/calc/qr-generator**](https://pickrack.com/tools/calc/qr-generator/)
+
+- **Cost**: Free, unlimited
+- **Tracking**: None — encodes URL directly
+- **Privacy**: Browser-side (qrcode.js library)
+- **Output**: PNG + SVG
+- **Customization**: Size 100-1000px, error correction L/M/Q/H
+
+Supported content types:
+- URL (HTTPS, HTTP, mailto:, tel:)
+- Plain text (up to ~4000 chars)
+- WiFi credentials (auto-connect on scan)
+- vCard (contact info)
+- Email (with subject/body pre-fill)
+
+Why this is the default recommendation:
+- **Encodes your URL directly** — no shortener, no redirect
+- **Browser-side** — verify zero network calls when generating in DevTools
+- **No signup, no quota, no watermark**
+- **PNG + SVG download**
+- **Open source** at github.com/pickrack/pickrack
+
+Cons:
+- No logo overlay UI yet (download SVG and overlay in Figma/Photoshop)
+- No analytics (this is intentional — analytics requires shortener)
+
+## 2. QR Code Generator (qr-code-generator.com)
+
+- **Cost**: Free with limited customization; paid for advanced
+- **Tracking**: None on free static QRs
+- **Privacy**: Cloud generation
+- **Output**: PNG + SVG + EPS
+
+Polished web UI with templates for restaurants, business cards, WiFi, etc. Free tier produces direct (non-tracked) static QR codes.
+
+Note: Their "Dynamic QR" feature does add a shortener (paid feature). For free static, output is direct.
+
+## 3. GoQR.me
+
+- **Cost**: Free
+- **Tracking**: None
+- **Output**: PNG, SVG, PDF
+
+No-frills QR generator. Functional, fast, no signup. Good for quick utility use.
+
+## 4. QRCode Monkey
+
+[**qrcodemonkey.com**](https://www.qrcode-monkey.com)
+
+- **Cost**: Free with branded customization
+- **Tracking**: None on free static
+- **Output**: PNG, SVG
+
+Strong logo overlay and color customization (round corners, custom eye shapes, brand colors). Free tier gives full visual customization without watermark.
+
+For marketing posters and branded merchandise, QRCode Monkey is excellent.
+
+Cons: heavier UI than minimal alternatives; free tier static only (dynamic costs).
+
+## 5. QRTiger ⚠️ AVOID FOR FREE
+
+[**qrtiger.com**](https://www.qrtiger.com)
+
+- **Cost**: Free with caveat
+- **Tracking**: **YES on free tier** by default — adds qrtiger.com shortener
+- **Output**: Various
+
+QRTiger's free tier produces QRs that route through their qrtiger.com shortener. They get analytics on every scan; you don't, unless you pay. The QR also fails permanently if QRTiger ever shuts down.
+
+Avoid free QRTiger. If you want their dynamic QR analytics features, pay for them deliberately, but recognize you're now dependent on their service.
+
+## How to verify your QR has no tracking
+
+1. Generate QR with the tool
+2. Scan with any QR app (iOS Camera, Google Lens)
+3. Look at the URL shown:
+   - **If it matches what you typed**: clean, direct encoding
+   - **If it shows a shortener domain** (bit.ly, qrtiger.com, etc.): tracking baked in
+
+For Pickrack, the scan shows your exact URL. No redirect. No analytics. The QR works forever (or as long as your destination URL exists).
+
+## Common QR use cases
+
+### Restaurant menu
+
+- **Content**: URL to your online menu (https://yourrestaurant.com/menu)
+- **Size**: 4cm × 4cm printed
+- **Error correction**: M (default)
+- **Format**: Print PNG at 1000px, or SVG for any size
+
+### WiFi guest network
+
+- **Content type**: WiFi (Pickrack handles formatting)
+- **Format**: `WIFI:T:WPA;S:GuestSSID;P:password123;;`
+- **Display**: print on a placard at the table or guest area
+- **Use**: iPhone (iOS 11+) and Android 10+ auto-connect on scan, no typing
+
+### Business card
+
+- **Content type**: vCard (Pickrack handles formatting)
+- **Output**: SVG for max sharpness on small print
+- **Size**: 1.5cm × 1.5cm fits on most business cards
+- **Error correction**: H if printing at small size
+
+### Event poster
+
+- **Content**: URL to ticket page or RSVP form
+- **Size**: 5-10cm depending on poster distance
+- **Error correction**: Q or H (outdoor weather)
+- **Format**: SVG for vinyl or print
+
+### Product packaging
+
+- **Content**: Product page URL or instructions PDF
+- **Size**: 2-3cm depending on package size
+- **Error correction**: M
+- **Note**: Test scan from typical retail shelf distance
+
+## Decision tree
+
+```
+Need a QR code
+├── One-off, no branding needed?
+│   └── Pickrack (fast, no signup, direct encoding)
+├── Restaurant / branded poster?
+│   ├── Logo overlay needed → QRCode Monkey or Pickrack + manual overlay
+│   └── No logo → Pickrack
+├── Need scan analytics?
+│   ├── Pay deliberately → QRTiger paid (or Bitly QR)
+│   └── No analytics, just QR → Pickrack
+├── WiFi credentials?
+│   └── Pickrack WiFi mode (handles formatting)
+└── vCard / contact info?
+    └── Pickrack vCard mode
+```
+
+## Pro tips
+
+**1. Test before printing.** Always scan your generated QR with multiple phones (iOS + Android) before sending to print. Test at the actual size and distance you'll print.
+
+**2. Use HTTPS, not HTTP.** Modern phones warn on HTTP URLs. Use HTTPS or shorten via your own domain.
+
+**3. Don't use bit.ly or other shorteners unintentionally.** Check the QR's encoded URL. If it's a shortener you didn't choose, the generator added tracking.
+
+**4. SVG for any printable QR.** Vector format scales perfectly. PNG is fine for digital but SVG future-proofs you against any size change.
+
+**5. Save the source URL alongside.** Generate the QR PLUS save the source URL in a Notes file. If you ever need to regenerate, you have the data.
+
+## Bottom line
+
+For most users, **Pickrack QR Generator is the default** — direct encoding, no tracking, browser-side privacy, free. PNG + SVG output covers all printing needs.
+
+For branded designs with logo overlay and custom colors, QRCode Monkey is the right choice (free tier is generous).
+
+Avoid QRTiger free tier and similar tracking-by-default services. If you want QR analytics, pay for them deliberately and understand the service dependency.
+
+Try [Pickrack QR Generator](https://pickrack.com/tools/calc/qr-generator/) on your next QR.

@@ -1,0 +1,200 @@
+---
+title: "How to Compress Images for Web in 2026 (Quality vs Size, JPG vs WebP vs AVIF)"
+description: "Image compression has changed. WebP is universal, AVIF is mainstream. Here's the 2026 decision tree for compressing images for web with concrete quality/size tradeoffs."
+date: "2026-05-04"
+dateModified: "2026-05-04"
+tags: ["image", "tutorial"]
+author: "Pick Rack"
+howTo:
+  name: "How to compress images for web"
+  description: "Reduce image file size for faster web page loads, better Core Web Vitals scores, and lower hosting costs without visible quality loss."
+  steps:
+    - name: "Identify the use case"
+      text: "Hero image (large, single per page) needs different treatment than thumbnail (small, many per page) than user-uploaded content (variable). Decide quality target before compressing."
+    - name: "Choose the format"
+      text: "WebP for universal modern support and 25-35% smaller than JPG. AVIF for cutting-edge sites (~50% smaller than JPG, Chrome/Firefox/Safari support). JPG for legacy support. PNG only for transparency or pixel art."
+    - name: "Pick a quality level"
+      text: "85-90% for hero images (typically invisible loss). 75-80% for body content (slight loss visible only at 200% zoom). 65-70% for thumbnails (smaller is more important than quality)."
+    - name: "Compress and verify"
+      text: "Use Pickrack Image Compressor or Squoosh. Compare before/after at 100% zoom. If output is acceptable, ship it. If you see banding or blockiness, increase quality 5%."
+    - name: "Serve responsive variants"
+      text: "For modern web, serve different image sizes for mobile (small), tablet (medium), desktop (large). HTML <picture> element with srcset handles this."
+faq:
+  - q: "Should I use JPG, WebP, or AVIF?"
+    a: "WebP is the safe default in 2026 — supported by all major browsers since 2020, ~25-35% smaller than JPG at same quality. AVIF is even smaller (~50% vs JPG) and supported by Chrome (2020), Firefox (2021), Edge (2022), partially in Safari (2022). Use AVIF for Chrome/Firefox-heavy traffic; fall back to WebP. JPG only for legacy support."
+  - q: "How much can I compress before quality drops?"
+    a: "JPG 85-90% is usually visually lossless for photos. JPG 75-80% has very subtle artifacts visible at 200% zoom. JPG below 65% shows visible banding on gradients and blockiness on textures. WebP and AVIF compress better at the same quality number — WebP 80% looks like JPG 90%."
+  - q: "What's the right resolution for web images?"
+    a: "Hero images: 1920px wide for desktop, 768px for mobile. Body content: 800-1200px wide. Thumbnails: 200-400px wide. Above 1920px is wasted bandwidth on most monitors. For Retina/4K displays, serve 2x using srcset (e.g., 3840px hero on 1920px slot)."
+  - q: "Does image compression affect SEO?"
+    a: "Yes, indirectly. Faster page load improves Core Web Vitals (LCP — Largest Contentful Paint), which Google uses as a ranking signal. Heavy images are often the bottleneck. Compressing hero images from 500KB to 80KB can drop LCP from 3s to 1.2s, measurably improving rankings."
+  - q: "Should I use lazy loading?"
+    a: "Yes for below-the-fold images. Add loading=lazy to img tags or use Next.js Image component. Lazy loading defers image download until the user scrolls near them, improving initial page load. Don't lazy-load the LCP (hero) image — that delays rendering."
+  - q: "What about progressive JPEG?"
+    a: "Progressive JPEG renders in stages (blurry first, then sharp) instead of top-to-bottom. For users on slow connections, progressive feels faster. For broadband users, the difference is invisible. Most modern encoders (MozJPEG, Squoosh) produce progressive by default."
+  - q: "Should I strip EXIF metadata?"
+    a: "Yes. EXIF (camera info, GPS) typically adds 50-200KB to each image. Strip it for web — saves bandwidth and protects user privacy (no GPS on uploaded photos). Browser-side compressors (Pickrack, Squoosh) typically strip EXIF as a side effect of canvas re-encoding."
+  - q: "How do I A/B test compression quality?"
+    a: "Compress at 80%, 85%, 90%. Show side-by-side on a real device (not just zoomed-in laptop). If users can't reliably tell which is which, ship the smallest. Tools: Squoosh has a side-by-side comparison built in. Pickrack shows before/after with file sizes."
+---
+
+In 2026 the web image landscape is settled: WebP is universal, AVIF is mainstream for cutting-edge sites, JPG is for legacy support only. PNG is for pixel art and transparency. This guide covers the decisions and concrete numbers.
+
+## The 2026 format hierarchy
+
+| Format | Compression | Browser support | Use case |
+|---|---|---|---|
+| **AVIF** | Best (~50% smaller than JPG) | Chrome, Firefox, Edge, Safari (partial) | Cutting-edge sites, max performance |
+| **WebP** | Great (~25-35% smaller than JPG) | All major browsers since 2020 | **Default for new sites** |
+| **JPG** | OK | Universal (since 1992) | Legacy support, fallback |
+| **PNG** | Lossless, large | Universal | Transparency, pixel art, screenshots |
+| **GIF** | Inefficient | Universal | Animations only (use animated WebP for new) |
+
+For new web work in 2026, default to WebP. Add AVIF for performance-critical pages. JPG only as a `<picture>` fallback for ancient browsers.
+
+## Decision tree
+
+```
+Image for the web
+├── Photograph (people, products, scenes)?
+│   ├── Performance critical → AVIF (with WebP fallback)
+│   └── Standard → WebP (with JPG fallback)
+├── Logo, icon, line art?
+│   └── SVG (vector — infinite quality, tiny size)
+├── Screenshot, UI demo?
+│   └── PNG (lossless, sharp text/edges)
+├── Pixel art, low-color graphic?
+│   └── PNG (lossless preserves color palette)
+├── Animation?
+│   └── Animated WebP (smaller than GIF) or MP4
+└── Hero with transparency?
+    └── WebP (transparency supported, smaller than PNG)
+```
+
+## Step-by-step: compress a hero image for web
+
+[**Pickrack Image Compressor**](https://pickrack.com/tools/image/image-compressor/) workflow:
+
+1. **Drop your hero image** (typically 4MB+ from your camera or stock site)
+2. **Resize to 1920px wide** (use [Image Resizer](https://pickrack.com/tools/image/image-resizer/) first if larger)
+3. **Choose WebP output** (or AVIF for cutting-edge)
+4. **Quality 85** (default for hero — visually lossless)
+5. **Compare before/after** at 100% zoom
+6. **Download** — typical result: 4MB → 80-150KB (95% reduction)
+
+For thumbnails:
+- Resize to 400px wide
+- Quality 75
+- WebP output
+- Result: ~10-30KB per thumbnail
+
+## Real-world numbers
+
+Same 4MB photograph (4032×3024 from iPhone), output for web:
+
+| Format + quality | File size | Reduction | Visible diff |
+|---|---|---|---|
+| Original (HEIC) | 4.0 MB | — | reference |
+| **AVIF 85** | 65 KB | **98%** | invisible at 100% |
+| **WebP 85** | 95 KB | 97% | invisible at 100% |
+| JPG 90 | 380 KB | 90% | invisible at 100% |
+| JPG 80 | 220 KB | 95% | invisible at 100%, slight at 200% |
+| JPG 65 | 110 KB | 97% | visible at 100% |
+| PNG | 8.2 MB | -100% (larger) | identical (lossless) |
+
+Takeaways:
+- **WebP at 85% is the sweet spot** for new sites — 97% smaller, no visible loss
+- **AVIF at 85%** is even better (98% smaller) but encoding is slower and Safari support is partial
+- **JPG at 80%** is the legacy fallback — still a 95% reduction
+- **PNG for photos is wasteful** — 2x larger than original
+
+## Responsive images with `<picture>`
+
+Modern web doesn't ship one image to all devices. Use HTML `<picture>` to serve the right size and format:
+
+```html
+<picture>
+  <source srcset="hero.avif" type="image/avif" />
+  <source srcset="hero.webp" type="image/webp" />
+  <img src="hero.jpg" alt="Hero" loading="lazy" />
+</picture>
+```
+
+Browser tries AVIF first, falls back to WebP, then JPG. All three files served from your CDN.
+
+For multi-resolution (mobile vs desktop):
+
+```html
+<picture>
+  <source media="(max-width: 768px)" srcset="hero-mobile.avif" type="image/avif" />
+  <source srcset="hero-desktop.avif" type="image/avif" />
+  <img src="hero.jpg" alt="Hero" />
+</picture>
+```
+
+Mobile users get a smaller file; desktop users get full resolution. Saves significant bandwidth on mobile.
+
+## Compression workflow for production sites
+
+For each image asset:
+
+1. **Source: master 4K or original photo** in PSD/RAW (keep this — never edit further)
+2. **Export 1920px PNG** as intermediate (lossless reference)
+3. **Compress 3 outputs**:
+   - hero.avif (quality 85, ~50KB)
+   - hero.webp (quality 85, ~80KB) 
+   - hero.jpg (quality 80, ~200KB) — fallback
+4. **Serve via `<picture>`** with the 3 sources
+
+Tools for this workflow:
+- **Pickrack** for ad-hoc one-off compressions
+- **Squoosh CLI** for scripted batch
+- **Sharp** (Node.js) for build-time pipelines (Astro, Next.js, etc.)
+- **ImageOptim** for Mac desktop power users
+
+## Core Web Vitals impact
+
+LCP (Largest Contentful Paint) is the time to render the largest visible element on initial load. For most sites, that's the hero image.
+
+Hero image size impact on LCP:
+
+| Hero file size | Typical LCP (4G mobile) | Google score |
+|---|---|---|
+| 1.5 MB | 4.5-6.0s | Poor (red) |
+| 500 KB | 2.0-3.0s | Needs improvement |
+| **150 KB** | **1.2-1.8s** | **Good (green)** |
+| 50 KB | 0.8-1.2s | Good (green) |
+
+Compressing hero from 1.5MB (poor) to 150KB (good) is one of the biggest single SEO wins available. Most sites have 5-10 minutes of work to do this; the ranking benefit is measurable within weeks.
+
+## Common compression mistakes
+
+**1. Compressing PNG when you should use JPG/WebP.**
+PNG for photos is wasteful. Convert to WebP (or JPG) for 5-20x smaller files.
+
+**2. Using JPG for screenshots.**
+JPG introduces visible artifacts on UI text. Screenshots are sharp/edge-heavy — use PNG (lossless) or WebP lossless.
+
+**3. Not resizing before compressing.**
+A 4032px-wide photo compressed to JPG 80% is still 4032px wide — way more than needed for web. Resize to 1920px max first, then compress. Saves another 75% file size.
+
+**4. Compressing once but storing twice.**
+Don't re-compress already-compressed JPG. Each compression cycle adds artifacts. Compress from the original, never from a compressed version.
+
+**5. Forgetting the fallback.**
+AVIF/WebP are great but Safari has partial AVIF support. Always include a JPG fallback in `<picture>` or accept that some users see broken images.
+
+**6. Using CDN's auto-optimization without verifying.**
+Cloudflare Polish, Vercel Image Optimization, Cloudinary all do automatic compression. Often great. Sometimes too aggressive — verify your hero images look good after their processing.
+
+## Bottom line
+
+For new web work in 2026:
+- **Hero photos**: WebP 85% (or AVIF 85% for cutting-edge), with JPG 80% fallback
+- **Thumbnails**: WebP 75%
+- **Screenshots and pixel art**: PNG (lossless)
+- **Logos**: SVG (vector)
+
+Use [Pickrack Image Compressor](https://pickrack.com/tools/image/image-compressor/) for ad-hoc compression and [Image Converter](https://pickrack.com/tools/image/image-converter/) to convert formats. Both are free, browser-side, and unlimited.
+
+For build-time pipelines, install Sharp (Node.js) or Squoosh CLI for scripted batch processing.

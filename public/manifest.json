@@ -1,0 +1,17 @@
+{
+  "name": "Pick Rack",
+  "short_name": "PickRack",
+  "description": "Curated picks of free AI, PDF & developer tools.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#10b981",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

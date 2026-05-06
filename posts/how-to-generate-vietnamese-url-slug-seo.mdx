@@ -1,0 +1,194 @@
+---
+title: "How to Generate Vietnamese URL Slugs for SEO (2026 Guide)"
+description: "Vietnamese diacritics make URL slugs tricky. Here's how to convert 'Cách viết bài SEO hay' to 'cach-viet-bai-seo-hay' for clean, SEO-friendly URLs."
+date: "2026-05-04"
+dateModified: "2026-05-04"
+tags: ["text", "tutorial"]
+author: "Pick Rack"
+howTo:
+  name: "How to generate Vietnamese URL slugs"
+  description: "Convert Vietnamese text with diacritics into clean URL-friendly slugs for SEO and CMS use."
+  steps:
+    - name: "Identify your title or text"
+      text: "Start with the full Vietnamese title — for example, 'Cách viết bài SEO hay năm 2026'. The slug should preserve meaning while becoming URL-safe."
+    - name: "Strip Vietnamese diacritics"
+      text: "Use the Pickrack Slug Generator at https://pickrack.com/tools/text/slug-generator. It handles all 6 Vietnamese tones plus đ→d, ư→u, ê→e, ô→o, ơ→o automatically."
+    - name: "Convert to lowercase and replace spaces"
+      text: "The tool converts to lowercase and replaces spaces with hyphens. 'Cách viết bài SEO hay' becomes 'cach-viet-bai-seo-hay'."
+    - name: "Limit length for SEO best practice"
+      text: "Google recommends slugs under 60 characters. The tool has a length cap option (60, 80, 100) that truncates at the last word boundary, preserving readability."
+    - name: "Verify and use in your CMS"
+      text: "Copy the slug and paste into your CMS URL field. Verify the URL renders correctly when you visit it. Update internal links to use the new slug."
+faq:
+  - q: "Why strip Vietnamese diacritics from URLs?"
+    a: "Modern URLs technically support Unicode (RFC 3986 percent-encoding), but stripped ASCII URLs are: (1) shorter to type, (2) more readable when shared, (3) more cache-friendly for CDNs, (4) compatible with legacy systems. Most Vietnamese SEO experts recommend ASCII slugs even though Unicode works."
+  - q: "Will Vietnamese URLs rank for English searches?"
+    a: "Slugs (URL paths) have minor SEO impact compared to title tags and content. A Vietnamese-language article should have a Vietnamese-meaningful slug (cach-viet-bai-seo-hay), not a forced English translation. Slug is for users; ranking is for content + title + meta description."
+  - q: "What about 'đ' (d with stroke)?"
+    a: "Vietnamese 'đ' is a unique character not handled by standard Unicode normalize. Pickrack's slug generator special-cases it: đ → d, Đ → D. After this special case, standard NFD normalization handles all tone marks (sắc, huyền, hỏi, ngã, nặng)."
+  - q: "Should I use hyphens or underscores?"
+    a: "Hyphens. Google's official guidance is hyphens for word separation in URLs. Underscores are treated as word-joiners (so 'my_blog_post' may be read as one word). Hyphens are universally readable and match URL conventions on every platform."
+  - q: "How long should a slug be?"
+    a: "Google recommends under 60 characters. Shorter is better for shareability and click-through (URLs displayed in search results truncate after ~60 chars). The Pickrack slug generator truncates at the last word boundary so you don't get cut-off words."
+  - q: "What about Chinese, Japanese, Korean URLs?"
+    a: "CJK characters can be percent-encoded in URLs but are even harder to read than Vietnamese. Most CJK SEO content uses transliterated Latin slugs (pinyin for Chinese, romaji for Japanese, romanized Korean). Pickrack v1 handles Vietnamese diacritic stripping; CJK transliteration is on the roadmap."
+  - q: "Can I bulk-generate slugs?"
+    a: "v1 is one slug at a time. For bulk slug generation (CMS migration, importing 100+ articles), use a small JavaScript with the Vietnamese normalize logic. Pickrack's source code is open at github.com/pickrack/pickrack — copy the logic into your migration script."
+  - q: "What about emoji and special characters?"
+    a: "All emoji and non-Latin pictographs are removed from slugs (only ASCII alphanumeric + hyphens remain). Special characters like #, &, %, * are also stripped. The output is always URL-safe ASCII."
+---
+
+You wrote a great Vietnamese article and need a clean URL for it. Vietnamese has 6 tone marks plus đ/Đ characters that don't appear in standard Latin. Most CMSes don't handle this well by default — you get URLs like `c%C3%A1ch-vi%E1%BA%BFt-b%C3%A0i-seo-hay` that are unreadable when shared.
+
+This guide shows you how to convert Vietnamese text to clean ASCII slugs that work with any CMS, look professional in search results, and are short enough to type from memory.
+
+## The Vietnamese diacritic problem
+
+Vietnamese has 6 tones and several special vowels:
+
+```
+Vowels: a/â/ă, e/ê, i, o/ô/ơ, u/ư, y
+Tones: a, à, á, ả, ã, ạ (× each vowel = 36 vowel variants)
+Special consonant: đ
+```
+
+URL paths technically support all Unicode characters via percent-encoding. So `cách-viết-bài-seo-hay` works as a URL — but renders as `c%C3%A1ch-vi%E1%BA%BFt-b%C3%A0i-seo-hay` when copied/shared. Ugly.
+
+The fix: convert to plain ASCII Latin. Pickrack's slug generator handles this automatically.
+
+## Step-by-step: Convert with Pickrack
+
+[**pickrack.com/tools/text/slug-generator**](https://pickrack.com/tools/text/slug-generator/)
+
+1. **Type or paste your title**: e.g., `Cách viết bài SEO hay năm 2026`
+2. **Read the live slug**: `cach-viet-bai-seo-hay-nam-2026`
+3. **Optional: set max length** (60 chars for SEO best practice)
+4. **Copy and paste into your CMS** URL field
+
+That's it. The tool runs entirely in your browser — your text never uploads.
+
+## Real-world examples
+
+```
+Cách viết bài SEO hay → cach-viet-bai-seo-hay
+Đường về quê hương → duong-ve-que-huong
+Tắm rừng và sống chậm → tam-rung-va-song-cham
+Chuyện tình mùa thu → chuyen-tinh-mua-thu
+Nguyễn Trãi và Bình Ngô đại cáo → nguyen-trai-va-binh-ngo-dai-cao
+Sữa Tắm Lifebuoy 500ml → sua-tam-lifebuoy-500ml
+```
+
+## How the conversion works
+
+The Pickrack slug generator does these transformations in order:
+
+1. **Special-case Vietnamese đ → d, Đ → D** (Unicode normalize doesn't handle this)
+2. **NFD normalize** then strip combining marks (covers all tones: à á ả ã ạ â ă, è é ẻ ẽ ẹ ê, etc.)
+3. **Lowercase** the result
+4. **Replace any non-alphanumeric** with hyphen
+5. **Collapse consecutive hyphens** into single hyphen
+6. **Trim leading/trailing hyphens**
+7. **Optional: truncate at last word boundary** if max length exceeded
+
+The result is always pure ASCII (a-z, 0-9, hyphen) — safe for any URL or filesystem.
+
+## Vietnamese SEO best practices
+
+### 1. Slug should preserve meaning
+
+Don't strip too aggressively. Both work, but the first is better:
+
+- ✅ `cach-viet-bai-seo-hay` (preserves the title structure)
+- ❌ `cvb-seo-h` (over-truncated)
+
+### 2. Match the article language
+
+Vietnamese article → Vietnamese-derived slug. Don't force English translation:
+
+- ✅ `cach-viet-bai-seo-hay` (article is Vietnamese)
+- ❌ `how-to-write-seo-articles` (slug doesn't match article language)
+
+Google ranks content by language; mixed signals confuse the algorithm.
+
+### 3. Stay under 60 characters when possible
+
+Google search results truncate URLs after ~60 chars. Slugs that get cut off look unprofessional in SERP previews.
+
+For long titles, the Pickrack tool truncates at the last word boundary:
+
+```
+Title: Cách viết bài SEO hay nhất năm 2026 cho người mới bắt đầu
+Slug 60-char: cach-viet-bai-seo-hay-nhat-nam-2026-cho-nguoi-moi
+                                                    [cut here]
+```
+
+### 4. Avoid stop-word stripping
+
+Some old SEO tools strip "the", "of", "and" etc. Don't do this for Vietnamese — it removes meaning. Modern Google handles full sentences fine.
+
+```
+Title: Bí quyết của một blogger thành công
+Good: bi-quyet-cua-mot-blogger-thanh-cong
+Bad: bi-quyet-blogger-thanh-cong (lost "của một")
+```
+
+### 5. Use slug consistency for series
+
+If you have multiple posts in a series, prefix slugs:
+
+```
+seo-co-ban-1-tu-khoa
+seo-co-ban-2-on-page
+seo-co-ban-3-link-building
+```
+
+This signals series structure to Google and helps with internal linking.
+
+## Common mistakes
+
+**Using Vietnamese characters directly in URL**:
+- Looks fine in CMS preview
+- Becomes ugly percent-encoded mess when shared on Facebook/Slack
+- Often breaks copy-paste flows
+
+**Translating slugs to English**:
+- Mismatched language signals to Google
+- Article is in Vietnamese, slug claims English
+- Lower ranking for Vietnamese searches
+
+**Not handling đ/Đ specially**:
+- Standard Unicode normalize doesn't split đ → d
+- Naive slug becomes "ng" (just removed) or "duờng" (broken Unicode)
+- Pickrack special-cases this correctly
+
+**Inconsistent across CMS migration**:
+- New CMS uses different slug rules than old
+- Internal links break
+- Use a consistent algorithm (Pickrack or open-source slugify libraries) for ALL articles
+
+## Migration: change all slugs at once
+
+If migrating a CMS from Vietnamese-with-diacritics URLs to clean ASCII slugs:
+
+1. Export all article URLs to CSV
+2. For each, generate the new slug (Pickrack tool one-by-one, or scripted)
+3. **Set up 301 redirects** from old → new URLs
+4. Update internal links to use new slugs
+5. Submit updated sitemap to Search Console
+6. Monitor for 404s in Search Console for 30 days
+
+301 redirects preserve SEO link equity. Without them, you lose page authority on the changed URLs.
+
+## What about percent-encoded URLs that already exist?
+
+If your existing Vietnamese URLs use percent-encoded Unicode (like `c%C3%A1ch-...`), you can leave them — they work, just look ugly when shared.
+
+If you're motivated to clean up: do the migration above. Cost is one weekend of work; benefit is cleaner URLs forever.
+
+## Bottom line
+
+Vietnamese URL slugs need explicit diacritic stripping that off-the-shelf slugify libraries often miss. [Pickrack Slug Generator](https://pickrack.com/tools/text/slug-generator/) handles all 6 tones plus đ/Đ correctly, runs in your browser (zero upload), and respects 60-char SEO limits.
+
+For Vietnamese SEO specifically, ASCII slugs are the standard — even though Unicode URLs technically work. Stripped slugs are shorter, more readable, more shareable, and more cache-friendly.
+
+Try [Pickrack Slug Generator](https://pickrack.com/tools/text/slug-generator/) on your next Vietnamese article title.

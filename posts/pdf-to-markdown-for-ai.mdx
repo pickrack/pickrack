@@ -1,0 +1,97 @@
+---
+title: "PDF to Markdown: The Practical Guide for AI Workflows"
+description: "Why feeding Markdown to ChatGPT or Claude beats raw PDF, which tools actually preserve structure, and a step-by-step workflow for solo creators."
+date: "2026-04-27"
+tags: ["pdf", "ai"]
+author: "Pick Rack"
+---
+
+If you've ever pasted a 200-page PDF into ChatGPT and gotten back a vague summary that misses half the document, this guide is for you.
+
+The fix isn't a better prompt. It's a better **input format**.
+
+## Why Markdown beats PDF for LLMs
+
+Large language models are trained on text — billions of pages of plain text, HTML, and Markdown. They process structured Markdown headings, lists, and tables natively. PDF, by contrast, is a **layout format** designed for printers, not parsers.
+
+When you feed a PDF to Claude or ChatGPT through a "chat with PDF" feature:
+
+1. The PDF goes through an extraction layer (often imperfect)
+2. Headings get flattened into plain paragraphs
+3. Tables turn into space-aligned rows the model has to re-interpret
+4. Footnotes and sidebars merge into the main flow
+
+The result: a model that's *technically* read your document but lost most of its structure.
+
+**Markdown skips all of that.** Headings are headings. Lists are lists. Tables are pipe-separated and clean. The model spends its attention budget on understanding content, not on disambiguating layout.
+
+## The 3 tools I actually use
+
+After testing a dozen options, here's the short list.
+
+### 1. MarkItDown (Microsoft, open source)
+
+[github.com/microsoft/markitdown](https://github.com/microsoft/markitdown) — Python CLI from Microsoft. Supports PDF, DOCX, XLSX, PPTX, HTML, images, audio with OCR fallback. Output is clean GitHub-Flavored Markdown.
+
+```bash
+pip install 'markitdown[all]'
+markitdown input.pdf > output.md
+```
+
+Best for: power users comfortable with the command line, anyone needing audio/image transcription in the same pipeline. Free, MIT license, runs locally.
+
+### 2. Pandoc
+
+[pandoc.org](https://pandoc.org) — the swiss-army knife of document conversion. PDF support requires a tex engine but it nails DOCX→MD, EPUB→MD, HTML→MD, and dozens of others.
+
+```bash
+pandoc input.docx -o output.md
+```
+
+Best for: any non-PDF document → Markdown. Best DOCX-to-Markdown converter I've used, period.
+
+### 3. LlamaParse (paid, but excellent for tables)
+
+[llamaindex.ai/llamaparse](https://www.llamaindex.ai/llamaparse) — cloud-based PDF parser by LlamaIndex. Free tier 1000 pages/day. Specialized in **complex tables** (financial reports, scientific papers) where MarkItDown and others fall apart.
+
+Best for: documents heavy on data tables. The free tier covers most solo workflows.
+
+## A step-by-step workflow
+
+Here's how I prep a long PDF for Claude:
+
+1. **Convert** the PDF to Markdown using one of the tools above
+2. **Open** the `.md` file in any text editor and skim — does the structure look right? Fix obvious extraction errors (merged headings, broken tables)
+3. **Trim** anything irrelevant: copyright pages, indexes, bibliographies (unless they're the point)
+4. **Split** into sections if it's over ~50K tokens. Claude's 200K context handles a lot, but smaller chunks = more focused responses
+5. **Paste** into Claude/ChatGPT with a clear task: *"Summarize section 3", "Extract all dates and amounts", "Compare this paper's methodology to [other paper]"*
+
+That's it. The unsung 20 minutes that turns a frustrating 1-hour AI session into a 5-minute one.
+
+## What about scanned PDFs?
+
+If your PDF is a scanned image (no text layer), Markdown extraction will give you nothing. You need OCR first.
+
+Options:
+- **Free**: [Tesseract](https://github.com/tesseract-ocr/tesseract) (CLI, open source) or browser-based wrappers built on tesseract.js
+- **Paid but excellent**: [Mistral OCR](https://mistral.ai), [LlamaParse Premium](https://www.llamaindex.ai/llamaparse), [AWS Textract](https://aws.amazon.com/textract/) — all worth it for academic papers and complex tables
+
+After OCR, run the Markdown conversion again on the new text-layer PDF.
+
+## When to skip Markdown
+
+Three cases where raw PDF is fine:
+
+- **Single page** documents with mostly prose
+- **Images-heavy** content (Markdown loses visual context anyway — use Claude's vision feature instead)
+- **One-off questions** where setup time isn't worth it
+
+For everything else — research papers, annual reports, books, multi-section technical docs — convert first.
+
+## Bottom line
+
+Better input beats better prompts.
+
+Convert your PDF to Markdown before pasting. Use a tool that respects structure. Spend 5 minutes cleaning the output. The model will thank you with sharper, more accurate responses.
+
+Try it on your next long PDF. The difference is unmistakable.

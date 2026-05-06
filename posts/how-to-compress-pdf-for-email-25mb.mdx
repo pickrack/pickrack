@@ -1,0 +1,161 @@
+---
+title: "How to Compress PDF for Email Under 25MB (Gmail, Outlook, 2026)"
+description: "Gmail caps attachments at 25MB, Outlook at 20MB. Most PDFs can shrink 50-80% in 30 seconds. Here's the decision tree and step-by-step guide."
+date: "2026-05-04"
+dateModified: "2026-05-04"
+tags: ["pdf", "tutorial"]
+author: "Pick Rack"
+howTo:
+  name: "How to compress PDF for email under 25MB"
+  description: "Reduce a PDF's file size to fit Gmail's 25MB attachment limit, Outlook's 20MB, or any other email service cap."
+  steps:
+    - name: "Check the actual size limit you need"
+      text: "Gmail: 25MB. Outlook (default): 20MB, with Microsoft 365 some plans go to 100MB. Yahoo: 25MB. ProtonMail: 25MB. Identify which you're sending to before compressing."
+    - name: "Open the compress tool"
+      text: "Visit https://pickrack.com/tools/pdf/compress-pdf and upload your PDF (up to 100MB input)."
+    - name: "Pick a compression level"
+      text: "For a 30-50MB report → Medium (150 DPI). For a 50-100MB scan → High (72 DPI). For text-only PDFs → Low (300 DPI). The tool labels each preset clearly."
+    - name: "Compress and verify size"
+      text: "Server processes via Ghostscript in 5-30 seconds. The result page shows before and after sizes. If still too large, re-compress with a higher level."
+    - name: "Attach and send"
+      text: "Download the compressed PDF and attach to your email. If it still doesn't fit, see the alternatives section below for cloud share links."
+faq:
+  - q: "Why is my PDF so big in the first place?"
+    a: "Three common reasons. Embedded high-resolution images (especially scanned pages at 600 DPI). Embedded fonts that aren't being subset (legacy PDF generators). Multiple revisions saved into one file (bloat from incremental saves). Compression typically fixes the first two; the third needs the original source."
+  - q: "Will compression damage my PDF?"
+    a: "Text remains pixel-perfect (it's vector). Images get re-encoded at lower DPI. For text-heavy PDFs, the visual difference is invisible. For image-heavy PDFs (catalogs, photo books), high compression makes images visibly softer at zoom; medium compression is invisible at typical viewing zoom (100%)."
+  - q: "What if my PDF is still too large after compression?"
+    a: "Try splitting the PDF and sending in two emails. Or upload to Google Drive / Dropbox / WeTransfer and share a link instead of attaching. For recurring large files, set up a OneDrive or Drive folder and share once."
+  - q: "Is Gmail's limit really 25MB?"
+    a: "Yes — but Gmail has a workaround: attachments over 25MB are auto-uploaded to Google Drive and shared as a link. The recipient sees a Drive thumbnail instead of an attachment. For files under 5GB this works for many cases. For Google Workspace plans, the limit may be higher."
+  - q: "What's the difference between Pickrack and Smallpdf for compression?"
+    a: "Both use industry-standard engines (Pickrack uses Ghostscript, Smallpdf uses similar). Compression results are within 5-10% of each other. Pickrack has no daily limit; Smallpdf free tier limits to 2 tasks/day."
+  - q: "Can I compress multiple PDFs at once?"
+    a: "Pickrack v1 handles one PDF at a time per upload. For batch, use a desktop tool like Adobe Acrobat or pdfcpu CLI. For a small batch (5-10 PDFs), running Pickrack in multiple browser tabs in parallel works fine."
+  - q: "Will the compressed PDF still print well?"
+    a: "Low compression (300 DPI) = excellent print quality. Medium (150 DPI) = good for office printing, may show slight softness on photographic content. High (72 DPI) = screen-only quality, prints look pixelated. For documents you'll print, choose Low or Medium."
+  - q: "Are there email services with bigger attachment limits?"
+    a: "ProtonMail Plus: 25MB. Tutanota: 25MB. Microsoft 365 Business Premium: 100MB. For 200MB+ emails, all major services route through cloud share links anyway. Compress to 25MB and the recipient gets a normal attachment instead of a download link."
+---
+
+You finished a 38MB PDF report and need to send it to three people whose Gmail mailboxes cap at 25MB. Let's compress it in 30 seconds and ship it.
+
+## The 3 size limits that matter for email
+
+Most compression decisions reduce to one of these targets:
+
+| Service | Limit | Notes |
+|---|---|---|
+| **Gmail** | 25MB | Auto-Drive upload over 25MB |
+| **Outlook (default)** | 20MB | Up to 100MB on some 365 plans |
+| **Yahoo / ProtonMail / Tutanota** | 25MB | Standard |
+| **Slack free tier** | 1GB | Per file |
+| **WhatsApp document** | 100MB | |
+
+If you're sending to mixed recipients (some Gmail, some Outlook), target 20MB to be safe.
+
+## Step-by-step: Compress with Pickrack
+
+[**pickrack.com/tools/pdf/compress-pdf**](https://pickrack.com/tools/pdf/compress-pdf/)
+
+1. **Drop your PDF** (up to 100MB)
+2. **Pick compression level**:
+   - **Low (300 DPI)**: print archive quality, ~30% smaller
+   - **Medium (150 DPI)**: email + screen, ~50-70% smaller (recommended for email)
+   - **High (72 DPI)**: screen only, ~70-90% smaller
+3. **Click Compress**
+4. **Wait 5-30 seconds** — Ghostscript processes server-side
+5. **Result page shows**:
+   - Before/after size
+   - Percentage smaller
+   - Download button
+
+For most reports targeting 25MB Gmail limit, **Medium** preset is the right choice.
+
+## Real-world examples
+
+### Example 1: 38MB image-heavy quarterly report → 25MB Gmail
+
+- **Original**: 38MB (large embedded charts at 600 DPI)
+- **Medium compression**: 8.2MB (78% reduction)
+- **Result**: fits Gmail with margin to spare
+
+### Example 2: 22MB scanned tax return → 20MB Outlook
+
+- **Original**: 22MB (scanned at 300 DPI)
+- **Medium**: 6.5MB (70% reduction)
+- **Result**: easily fits Outlook
+
+### Example 3: 45MB photo portfolio PDF → 25MB Gmail
+
+- **Original**: 45MB (high-res photos)
+- **Medium**: 18MB (60% reduction) — fits Gmail
+- **High**: 8MB (82% reduction) — even better, but photos look slightly soft
+
+For photos, Medium is the better tradeoff. High introduces visible artifacts in photographic content.
+
+### Example 4: 12MB text-only legal contract → already fits!
+
+- **Original**: 12MB (50-page contract, text only)
+- **Compression**: skip — already under limits, compression saves under 2MB on text-only PDFs
+
+Text PDFs compress poorly because text is already vector-stored. Only image-heavy PDFs benefit dramatically from compression.
+
+## What if compression isn't enough?
+
+If your PDF is genuinely huge (200MB+ photo portfolio, video-embedded report), compression alone may not get under 25MB. Alternatives:
+
+### Split into multiple emails
+
+Use [Pickrack Split PDF](https://pickrack.com/tools/pdf/split-pdf/) to extract pages into smaller PDFs. Send "Part 1 of 3" and "Part 2 of 3" emails.
+
+### Cloud share link instead of attachment
+
+For Gmail: attachments over 25MB auto-upload to Google Drive and share as link. For Outlook/Yahoo: manually upload to:
+
+- **Google Drive** (15GB free per Google account)
+- **Dropbox** (2GB free)
+- **WeTransfer** (2GB free, no signup, expires in 7 days)
+- **Filemail** (5GB free)
+
+Paste the link in your email. Recipient downloads from cloud — no attachment needed.
+
+### Convert images to lower resolution within source
+
+If you control the source (Word doc, PowerPoint, Photoshop file), reduce embedded image resolution before exporting to PDF:
+
+- Word: File → Options → Advanced → "Default resolution" → 150 ppi
+- PowerPoint: same path
+- Photoshop "Save as PDF": Optimize for "Smallest File Size"
+
+This produces a small PDF from the start, no compression needed.
+
+## When NOT to compress
+
+- **Legal contracts requiring exact reproduction** (some courts reject re-encoded PDFs)
+- **Print-shop submissions** demanding minimum 300 DPI images
+- **Archival documents** where you want to preserve maximum quality
+
+For these, find a way to share the original (cloud link, in-person, USB drive).
+
+## Common compression issues
+
+**"Encrypted PDF cannot be compressed"**
+→ [Unlock PDF](https://pickrack.com/tools/pdf/unlock-pdf/) first (you need the password), then compress. Re-encrypt with [Protect PDF](https://pickrack.com/tools/pdf/protect-pdf/) afterward.
+
+**Compressed PDF text looks blurry**
+→ This shouldn't happen; text is vector. If you see this, the PDF likely had text rendered as images (e.g., scanned). For these, Low or Medium preserves more detail.
+
+**Output is barely smaller than input**
+→ The PDF was already optimized by another tool. Or it's text-only (text doesn't compress much). Accept the small reduction or look for bloat in the source document.
+
+**Conversion takes a long time**
+→ Large PDFs (50MB+) take 30-60 seconds. If processing takes more than 2 minutes, the file may be corrupted — try opening it in Adobe Reader and re-saving.
+
+## Bottom line
+
+For 90% of PDF email attachments, **Pickrack Compress PDF at Medium preset** gets you under Gmail's 25MB limit in under a minute. No signup, no quota, no watermark.
+
+For very large files (>200MB) or restricted PDFs, use cloud share links instead of attachments — Gmail does this automatically over 25MB.
+
+Try [Pickrack Compress PDF](https://pickrack.com/tools/pdf/compress-pdf/) on your next oversized attachment.

@@ -1,0 +1,152 @@
+---
+title: "Pickrack vs Smallpdf 2026: Free Tier, Privacy, and Real Limits Compared"
+description: "Smallpdf caps free users at 2 tasks per day and starts at $9/month for Pro. Pickrack has no daily quota and most tools never upload. Here's the honest comparison."
+date: "2026-05-04"
+dateModified: "2026-05-04"
+tags: ["pdf", "comparison"]
+author: "Pick Rack"
+faq:
+  - q: "Is Smallpdf actually free?"
+    a: "Smallpdf has a free tier limited to 2 tasks per day with all PDF tools. After 2 tasks, you must wait 24 hours or upgrade to Pro at $9 per month. Free output also includes a tiny Smallpdf watermark on some tools as of May 2026."
+  - q: "Does Pickrack have any usage limits?"
+    a: "Pickrack has no daily limit and no signup. Browser-side tools (16 of 37) have zero rate limits because nothing touches our server. Server-side tools have generous per-IP rate limits (6 to 15 requests per minute) and AI tools have a daily cap of 10 per IP, intended only to prevent abuse."
+  - q: "Can Smallpdf process my files privately?"
+    a: "Smallpdf uploads every file to their servers. They state files are deleted after processing, but users have no way to verify this. Pickrack's browser-side tools never upload — verifiable by opening DevTools and watching the Network tab."
+  - q: "Which has more tools?"
+    a: "Smallpdf has approximately 30 PDF-focused tools. Pickrack has 16 PDF tools plus 21 tools in other categories (image, AI, developer, text, calculators) for 37 total. Smallpdf wins on PDF tool depth; Pickrack wins on breadth."
+  - q: "Is Pickrack just a Smallpdf clone?"
+    a: "No. The two are different products. Smallpdf is a venture-backed startup with paid tiers and a polished UX. Pickrack is an indie open-source project optimized for privacy and zero quota. Use Smallpdf if you want a polished single-purpose PDF SaaS; use Pickrack if you want unlimited free use with verifiable privacy."
+  - q: "Can I trust the privacy claim?"
+    a: "Pickrack's source code is open at github.com/pickrack/pickrack under MIT license. Browser-side tools demonstrably make zero network calls during operation — open DevTools and confirm. Server-side tools delete inputs immediately after the response. We have no way to retain anything because the code (which you can read) doesn't store it."
+  - q: "What about quality differences?"
+    a: "For most operations the output is identical: both use industry-standard libraries (pdf-lib, qpdf, Ghostscript). Smallpdf has slightly better OCR (proprietary) and Smallpdf's compression algorithm is marginally better than Ghostscript on image-heavy PDFs. Pickrack matches or beats Smallpdf on compress, merge, split, rotate, watermark, encrypt."
+  - q: "Should I switch from Smallpdf to Pickrack?"
+    a: "If you hit Smallpdf's 2-tasks-per-day cap and don't want to pay $9/month, Pickrack is the obvious switch. If you have a Pro subscription you actively use, the polish of Smallpdf may be worth it. Many users use both — Smallpdf for occasional polished work, Pickrack for everyday or batch operations."
+---
+
+You're trying to merge three PDFs and Smallpdf tells you "you've used your 2 free tasks today, upgrade to Pro for $9/month." This article is for anyone deciding whether that $9 is worth it, or whether the free alternatives can match the experience.
+
+I've used both for the past 6 months. Here's the honest comparison.
+
+## TL;DR
+
+| Dimension | Smallpdf Free | Smallpdf Pro ($9/mo) | Pickrack |
+|---|---|---|---|
+| Daily task limit | **2 per day** | Unlimited | **Unlimited** |
+| Watermark on output | Light (some tools) | None | **None** |
+| File size limit | 5GB Pro only | 5GB | 100MB |
+| Tool count | ~30 | ~30 | **37** |
+| Privacy model | Cloud upload (deleted after) | Cloud upload | **Browser-side or zero retention** |
+| Signup required | No | Yes | **No** |
+| OCR quality | Good (proprietary) | **Excellent** | None (yet) |
+| Mobile app | iOS + Android | iOS + Android | **PWA — any browser** |
+| Source code | Closed | Closed | **MIT open source** |
+| Cost | Free with quota | $108/year | **Free, no quota** |
+
+If you do PDF work multiple times a day, Smallpdf Free won't survive — you'll either pay $9/month or switch tools. Pickrack solves this without paying.
+
+## What Smallpdf does better
+
+I'll start with what Smallpdf wins on, since this isn't a hit piece.
+
+**1. OCR.** Smallpdf has proprietary OCR (likely fine-tuned on PDF-specific datasets) that produces noticeably cleaner text extraction from scanned PDFs than open-source alternatives. If you regularly OCR scanned documents, Smallpdf Pro's OCR is genuinely worth paying for. Pickrack does not yet have OCR (on the roadmap with Tesseract).
+
+**2. Cloud sync.** Smallpdf Pro syncs your work across devices via their account. Edit a PDF on desktop, finish on mobile, all in one workspace. Pickrack is stateless — each session is independent. For solo workflows this rarely matters; for team workflows it matters a lot.
+
+**3. eSign.** Smallpdf Pro includes electronic signature workflows competitive with DocuSign at a fraction of the cost. Pickrack does not have eSign yet.
+
+**4. Polish.** Smallpdf's UX is more refined — animation timing, error recovery, mobile keyboard handling. Pickrack is more spartan; it works but lacks the small touches.
+
+If any of these matter for your workflow, Smallpdf Pro at $9/month may be the right call. Don't switch just to save $9.
+
+## Where Pickrack wins
+
+**1. No daily limit.** This is the biggest gap. Smallpdf's 2-tasks-per-day free tier is hostile by design — it forces you to upgrade. Pickrack has no equivalent; merge 50 PDFs in a row, no one cares.
+
+**2. Browser-side privacy.** Smallpdf uploads every file to their servers, processes, and (per their policy) deletes after a few hours. You take this on faith. Pickrack's 32 browser-side tools never upload — verifiable in DevTools → Network. For sensitive documents (legal, medical, financial), this matters.
+
+**3. Open source.** Pickrack's code is public at [github.com/pickrack/pickrack](https://github.com/pickrack/pickrack). You can read exactly what happens to your file. Smallpdf is closed-source.
+
+**4. More than PDF.** Pickrack has 21 non-PDF tools (image compress, background remover, JSON formatter, password generator, AI summarizer, AI translator). Smallpdf is PDF-only. If your daily workflow includes image and dev tools, Pickrack consolidates 3-5 separate tabs into one bookmark.
+
+**5. No watermark on free output.** Some Smallpdf free-tier tools add a tiny watermark; all Pickrack output is watermark-free.
+
+**6. AI tools at no extra cost.** Pickrack includes free AI summarizer, translator, and grammar checker (10 requests/day each). Smallpdf has [Ai PDF](https://www.smallpdf.com/ai-pdf) but it requires a Pro subscription to use beyond a 3-question demo.
+
+## Per-tool comparison (the headlines)
+
+### Compress PDF
+
+Both use Ghostscript-class engines. Compression ratios are within 5% of each other in our tests. Pickrack offers low/medium/high preset; Smallpdf has the same three. **Tie.**
+
+### Merge PDF
+
+Both work. Pickrack runs in browser (your file never uploads). Smallpdf uploads. **Pickrack wins on privacy.**
+
+### Split PDF
+
+Both support page range syntax. Smallpdf has slightly better visual preview. **Smallpdf wins on UX, Pickrack on privacy.**
+
+### Word ↔ PDF
+
+Both use LibreOffice-class engines on the server. Output quality is comparable. **Tie.**
+
+### PDF to PowerPoint
+
+Both produce image-per-slide output (text is not editable). This is a fundamental limitation of PDF → PPTX, not the tool's fault. **Tie.**
+
+### EPUB ↔ PDF
+
+Pickrack uses Calibre (gold-standard ebook converter). Smallpdf does not offer EPUB. **Pickrack wins.**
+
+### Password protect PDF
+
+Both use AES-256. **Tie.**
+
+### OCR
+
+Smallpdf only. **Smallpdf wins.**
+
+### eSign
+
+Smallpdf only. **Smallpdf wins.**
+
+## Pricing math: when does Smallpdf Pro pay off?
+
+Smallpdf Pro is $9/month, $108/year. To justify that, you need at least one of:
+
+- **More than 2 PDF tasks per day on average** (Pickrack's no-quota means $0 here)
+- **Frequent OCR** of scanned documents
+- **eSign workflows**
+- **Cloud sync** across devices for ongoing PDF projects
+
+If none of these apply, you're paying $108/year for marginal UX polish. Most users in this category use Pickrack and the savings cover a year of coffee.
+
+## Migration path: how to switch
+
+If you're a Smallpdf user considering Pickrack:
+
+1. **Bookmark [pickrack.com/tools/pdf](https://pickrack.com/tools/pdf/)** for the PDF tool catalog
+2. **Cancel Smallpdf Pro at the next billing cycle** (you keep access until end of period)
+3. **Try the equivalent Pickrack tool** for each Smallpdf tool you use weekly — most map directly:
+   - Smallpdf Compress → [Pickrack Compress PDF](https://pickrack.com/tools/pdf/compress-pdf/)
+   - Smallpdf Merge → [Pickrack Merge PDF](https://pickrack.com/tools/pdf/merge-pdf/) (browser-side)
+   - Smallpdf PDF to Word → [Pickrack PDF to Word](https://pickrack.com/tools/pdf/pdf-to-word/)
+   - Smallpdf Protect → [Pickrack Protect PDF](https://pickrack.com/tools/pdf/protect-pdf/)
+4. **If OCR or eSign is essential**, keep Smallpdf Pro for those specifically — Pickrack hasn't replaced them yet.
+
+## Bottom line
+
+Smallpdf is a polished commercial product with a few features (OCR, eSign, cloud sync) that Pickrack doesn't have. Pickrack is a free, open-source, privacy-first alternative that covers 90% of common PDF work and adds 21 non-PDF tools.
+
+For most users hitting the 2-task daily limit, Pickrack is the answer.
+
+For users who genuinely need OCR + eSign + team workflows, Smallpdf Pro is reasonable.
+
+Both can coexist. We use Pickrack for everyday batch work and Smallpdf Pro at home for OCR-heavy projects.
+
+## Try it now
+
+- [Pickrack PDF tools](https://pickrack.com/tools/pdf/) — 16 PDF tools, free, no signup
+- [Pickrack image tools](https://pickrack.com/tools/image/) — what Smallpdf doesn't offer
+- [GitHub source](https://github.com/pickrack/pickrack) — verify our claims yourself

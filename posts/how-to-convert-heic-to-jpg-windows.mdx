@@ -1,0 +1,184 @@
+---
+title: "How to Convert HEIC to JPG on Windows (4 Free Methods, 2026)"
+description: "iPhone saves photos as HEIC, but Windows preview is broken and many tools reject HEIC files. Here are 4 free methods to convert HEIC to JPG, including 2 that don't upload your photos."
+date: "2026-05-04"
+dateModified: "2026-05-04"
+tags: ["image", "tutorial"]
+author: "Pick Rack"
+howTo:
+  name: "How to convert HEIC to JPG on Windows"
+  description: "Convert iPhone HEIC photos to JPG format on Windows for compatibility with web upload, email attachments, and older photo software."
+  steps:
+    - name: "Identify how many photos you have to convert"
+      text: "Single photo or batch under 50: use a browser-side converter like Pickrack. Hundreds of photos: use a desktop tool like XnConvert or HEIC for Windows from Microsoft Store."
+    - name: "For 1-50 photos: Pickrack HEIC to JPG"
+      text: "Visit https://pickrack.com/tools/image/heic-to-jpg and drop your HEIC files (single or batch). Choose JPG (smaller) or PNG (lossless) output. Click Convert and download the ZIP archive."
+    - name: "For 50+ photos: HEIC for Windows or XnConvert"
+      text: "Microsoft's official HEIC for Windows extension makes Windows Photos preview HEIC natively, but does not convert. For batch conversion, install XnConvert (free) and configure HEIC input → JPG output."
+    - name: "Verify the JPGs work"
+      text: "Open a sample converted JPG in Windows Photos, Gmail web, or your target app. Confirm it displays correctly and metadata (date, optionally GPS) is preserved if needed."
+    - name: "Optional: keep originals as HEIC"
+      text: "HEIC is half the size of JPG at same quality. If your storage is constrained, keep originals as HEIC and only convert when you need to share. Configure iPhone to save as HEIC: Settings → Camera → Formats → High Efficiency."
+faq:
+  - q: "Why does my iPhone save photos as HEIC?"
+    a: "iOS 11+ defaults to HEIC because it's about 50% smaller than JPG at the same visual quality. To make iPhone save JPG instead: Settings → Camera → Formats → Most Compatible. New photos taken after this change will be JPG; existing HEIC photos in your library remain HEIC unless converted."
+  - q: "Is HEIC quality better than JPG?"
+    a: "HEIC uses HEVC (H.265) compression with better algorithms than JPEG. At the same file size, HEIC has fewer compression artifacts. At the same quality, HEIC is ~50% smaller. The difference is visible only at low quality settings or after multiple re-encodings."
+  - q: "Will I lose quality converting HEIC to JPG?"
+    a: "JPG is lossy compression, so technically yes. At 92% quality (recommended default), the loss is invisible to human eyes. For lossless conversion, choose PNG output — but PNG files are 5-10x larger than equivalent JPG."
+  - q: "Will the converter strip my EXIF metadata?"
+    a: "Most browser-side converters (heic2any used by Pickrack) preserve basic metadata (date, orientation) but may lose some Apple-specific fields. For full metadata preservation, use a desktop tool like XnConvert or run exiftool to copy EXIF from HEIC to JPG after conversion."
+  - q: "What about live photos?"
+    a: "Live photos are pairs: HEIC still + MOV video. Browser-side converters handle the HEIC still only, not the MOV. To convert live photos fully, use Photos app on a Mac to export as JPG + MP4, or export from iCloud Photos web."
+  - q: "Why does Windows Photos show 'codec needed' for HEIC?"
+    a: "Windows 10/11 doesn't include HEIC codec by default. Microsoft offers a paid HEIF Image Extensions ($0.99) and a free HEVC extension. Install both, or use a third-party tool. Pickrack converts HEIC without needing any Windows extension."
+  - q: "Can I convert HEIC files without uploading?"
+    a: "Yes — Pickrack uses heic2any JavaScript library to convert in your browser. Photos never leave your device. Verify in DevTools → Network: zero upload requests during conversion."
+  - q: "What if I have hundreds of HEIC files?"
+    a: "Pickrack batch handles up to 50 at once. For larger batches, use XnConvert (free desktop) or Microsoft's HEIC support directly via PowerShell with the Image-Imaging cmdlet. Both handle thousands of files."
+---
+
+Your iPhone takes great photos, but you try to email one to a Windows friend and they get a broken preview, or upload to a job portal and get "format not supported." iPhone saves as HEIC since 2017, and Windows still doesn't fully support it without extra steps.
+
+This article covers 4 free methods to convert HEIC to JPG on Windows.
+
+## Why HEIC compatibility is still a problem in 2026
+
+HEIC is technically superior — 50% smaller than JPG at same quality. But adoption outside Apple's ecosystem has been slow:
+
+- **Windows 10/11**: Native preview broken without paid HEIF extension ($0.99)
+- **Gmail web**: Sometimes shows but doesn't always preview thumbnail
+- **Outlook**: Limited HEIC preview
+- **Most job application portals**: Reject HEIC uploads
+- **Older photo software** (Photoshop CS5, GIMP older than 2.10): Don't open HEIC
+
+Converting to JPG once gives you universal compatibility forever.
+
+## Method 1: Pickrack HEIC to JPG (recommended, browser-side)
+
+**Best for**: 1-50 photos at a time, privacy matters, no install.
+
+[**pickrack.com/tools/image/heic-to-jpg**](https://pickrack.com/tools/image/heic-to-jpg/)
+
+How it works:
+1. Drop HEIC files (single or batch up to 50)
+2. Choose output: JPG (smaller, recommended) or PNG (lossless, larger)
+3. For JPG: adjust quality slider (default 92% is fine for most uses)
+4. Click Convert
+5. Download — single or ZIP for batch
+
+Why this is the default recommendation:
+- **Privacy**: photos never upload (verifiable in DevTools → Network)
+- **No install**: works in any browser
+- **Free, unlimited**: no signup, no daily quota
+- **Cross-platform**: works on Windows, Mac, Linux, even mobile
+
+Quality: 5/5 — heic2any library decodes HEIC perfectly and re-encodes to JPG/PNG with no artifacts.
+
+## Method 2: HEIC for Windows (Microsoft Store)
+
+**Best for**: viewing HEIC natively without conversion.
+
+This is NOT a converter — it's a codec that lets Windows Photos open HEIC directly without conversion. Useful if you only need to view HEIC, not convert.
+
+Install:
+1. Open Microsoft Store
+2. Search "HEIF Image Extensions" (free) AND "HEVC Video Extensions" (free, sometimes $0.99)
+3. Install both
+4. Restart Windows Photos
+
+Now HEIC files preview correctly in File Explorer and Windows Photos. But emailing or uploading still requires conversion — extension only adds preview support.
+
+## Method 3: XnConvert (free desktop, batch)
+
+**Best for**: 50+ photos, batch processing, full metadata preservation.
+
+[**xnconvert.com**](https://www.xnconvert.com)
+
+XnConvert is a free desktop batch image processor. Use case: you exported your iCloud library and have 5,000 HEIC files to convert.
+
+Setup:
+1. Download XnConvert (Windows installer)
+2. Install
+3. Add your HEIC files (or whole folder)
+4. Set output: JPG, quality 92, preserve metadata
+5. Click Convert
+
+Pros:
+- Handles thousands of files
+- Preserves all EXIF metadata
+- Many other format options
+
+Cons:
+- Desktop install required
+- More complex UI than browser tools
+- Doesn't run in your browser
+
+## Method 4: PowerShell + System.Drawing
+
+**Best for**: developers, scripted workflows, no install.
+
+Windows PowerShell can convert HEIC if you have HEIF extension installed. Sample script:
+
+```powershell
+Add-Type -AssemblyName System.Drawing
+Get-ChildItem -Path "C:\Users\YourName\Photos\*.heic" | ForEach-Object {
+    $jpgPath = $_.FullName -replace '\.heic$', '.jpg'
+    [System.Drawing.Image]::FromFile($_.FullName).Save($jpgPath, [System.Drawing.Imaging.ImageFormat]::Jpeg)
+}
+```
+
+Pros: scriptable, works at scale.
+Cons: requires HEIF extension, less user-friendly than GUI tools.
+
+## Bonus: convert HEIC on Mac
+
+If you're on Mac, the built-in Preview app does HEIC → JPG natively:
+1. Open HEIC in Preview
+2. File → Export → Format: JPEG → Save
+
+For batch: use Image Capture app to import iPhone photos as JPG directly (Settings → "Import as JPEG").
+
+For browser-based on Mac: same Pickrack tool works.
+
+## Quality comparison: JPG quality settings
+
+For a 4MB iPhone HEIC photo:
+
+| Output | Quality | File size | Visible difference |
+|---|---|---|---|
+| HEIC (original) | — | 2.1 MB | reference |
+| JPG | 100% | 4.2 MB | imperceptible |
+| **JPG | 92% (default)** | **2.8 MB** | **invisible at any zoom** |
+| JPG | 80% | 1.8 MB | invisible at normal zoom, slight artifacts at 200%+ |
+| JPG | 60% | 1.1 MB | visible artifacts on solid colors, fine details |
+| PNG (lossless) | — | 12.5 MB | identical to original |
+
+**Recommendation**: JPG 92% for everyday use. JPG 80% for email attachments. PNG only when you'll edit further.
+
+## Common HEIC issues and fixes
+
+**"This format isn't supported"** when uploading to a website
+→ Convert to JPG first using any of the methods above
+
+**HEIC photo rotated wrong on Windows**
+→ EXIF orientation flag is being ignored. Convert to JPG (orientation gets baked in) or use Pickrack's image rotator after
+
+**Color washed out after conversion**
+→ HEIC supports wider color gamut (P3) than JPG. If converting precision photo work, prefer PNG output to preserve color
+
+**iPhone keeps saving HEIC despite settings change**
+→ Settings → Camera → Formats → Most Compatible affects NEW photos only. Existing photos remain HEIC until converted.
+
+**Live photo lost the video portion**
+→ Live photo = HEIC + MOV pair. Most converters handle the HEIC only. For full live photo conversion, use Mac Photos app or iCloud web export
+
+## Bottom line
+
+For occasional HEIC conversion (1-50 photos), [Pickrack HEIC to JPG](https://pickrack.com/tools/image/heic-to-jpg/) is the fastest and most private option. No install, no upload, no signup.
+
+For batch conversion (hundreds+), XnConvert desktop is more efficient.
+
+For native HEIC viewing without conversion, install Microsoft's HEIF Image Extensions from the Store.
+
+The best long-term solution: change iPhone to save JPG by default if storage isn't an issue (Settings → Camera → Formats → Most Compatible). New photos will be universally compatible without conversion.

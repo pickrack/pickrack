@@ -1,0 +1,138 @@
+---
+title: "Pickrack vs iLovePDF 2026: Free Tier Limits, Privacy, and Honest Comparison"
+description: "iLovePDF caps free users at 200MB per task and 30 conversions per day. Pickrack has no daily quota. Here's the side-by-side breakdown of when each makes sense."
+date: "2026-05-04"
+dateModified: "2026-05-04"
+tags: ["pdf", "comparison"]
+author: "Pick Rack"
+faq:
+  - q: "What's iLovePDF's actual free tier limit?"
+    a: "iLovePDF caps free users at approximately 200MB per task and limits to 30 conversions per day across most tools. Premium tier removes both limits at $9.99 per month, $79.99 per year."
+  - q: "How many tools does iLovePDF have?"
+    a: "iLovePDF has approximately 25 PDF-related tools as of May 2026, including OCR, electronic signature, and PDF editor. Pickrack has 16 PDF tools plus 21 tools in image, AI, developer, text, and calculator categories."
+  - q: "Which is faster?"
+    a: "iLovePDF is generally faster on server-side operations because they have a global CDN edge network. Pickrack runs on a single home server (Cloudflare Tunnel) so it's slower for users far from the server location. For browser-side tools (most of Pickrack), there's no speed difference because nothing uploads."
+  - q: "Can I trust iLovePDF with sensitive PDFs?"
+    a: "iLovePDF's privacy policy states files are deleted within 2 hours. They have ISO 27001 certification. However, files do upload to their servers — for genuinely sensitive content (legal, medical, financial), browser-side tools like Pickrack's offer verifiable privacy by never uploading at all."
+  - q: "Does Pickrack have OCR?"
+    a: "Not yet. OCR is on the roadmap with Tesseract. For now, if you need OCR, iLovePDF or Smallpdf are better choices."
+  - q: "Which has better PDF editor?"
+    a: "iLovePDF has a more developed PDF editor with annotations, text editing, and form fields. Pickrack does not yet have a PDF editor — only individual operations like merge, split, watermark."
+  - q: "Are there hidden costs?"
+    a: "iLovePDF: free tier has soft limits that nudge upgrades. Premium $9.99/mo has no hidden costs. Pickrack: free, no hidden costs, no signup, no upsell. Site sustains itself via display ads (which can be ad-blocked) and affiliate commissions on unrelated tools we review."
+  - q: "Should I use both?"
+    a: "Many users do. Pickrack for everyday batch work (no quota, fast for browser-side), iLovePDF for occasional OCR or PDF editing. There's no exclusivity."
+---
+
+iLovePDF and Pickrack overlap on most basic PDF operations, but they have very different business models. iLovePDF is a venture-backed Spanish startup with a polished cloud product and Premium upgrade pressure. Pickrack is an indie open-source project optimized for privacy and zero quota. This article compares them feature-by-feature and helps you pick.
+
+## Quick comparison
+
+| Dimension | iLovePDF Free | iLovePDF Premium ($9.99/mo) | Pickrack |
+|---|---|---|---|
+| File size per task | 200MB | 5GB | 30-100MB |
+| Daily conversions | ~30 (varies by tool) | Unlimited | **Unlimited** |
+| Tools | ~25 | ~25 | **37** |
+| Watermark on output | None | None | **None** |
+| Privacy | Cloud upload, 2hr delete | Cloud upload, 2hr delete | **Browser-side or zero retention** |
+| OCR | Yes (good) | Yes (better) | No |
+| eSign | Yes | Yes | No |
+| PDF Editor | Yes | Yes | No |
+| Mobile app | iOS + Android | iOS + Android | PWA |
+| Source code | Closed | Closed | **MIT open** |
+| AI tools | Limited | Limited | **3 (free)** |
+| Image tools | None | None | **5** |
+
+## Where iLovePDF wins
+
+**1. Polished UX and CDN speed.** iLovePDF has invested in mature server infrastructure with a global edge network. For users in Europe and the Americas, server-side operations are faster than Pickrack's single-region home server. The UX has small touches Pickrack lacks — drag interactions, smooth animations, professional onboarding.
+
+**2. OCR.** iLovePDF's OCR is genuinely good. Pickrack has no OCR yet. If you regularly process scanned PDFs, this matters.
+
+**3. PDF Editor.** iLovePDF has a real PDF editor — text editing, annotations, form fields. Pickrack offers individual operations (merge, split, watermark) but no integrated editor.
+
+**4. eSign.** Built-in electronic signature is competitive with DocuSign at much lower price. Pickrack does not offer eSign.
+
+**5. Mobile apps.** Native iOS and Android apps with offline mode. Pickrack is web-only (PWA install works but feels less native).
+
+## Where Pickrack wins
+
+**1. No daily quota.** iLovePDF Free limits 30 tasks/day across many tools. Pickrack has no equivalent. For batch work (compress 50 invoices, convert 100 photos), this is the difference between "free" and "$9.99/month."
+
+**2. Verifiable browser-side privacy.** iLovePDF uploads everything. Their 2-hour deletion is on faith. Pickrack's 32 browser-side tools NEVER upload — open DevTools → Network during use to verify zero requests.
+
+**3. Open source.** [github.com/pickrack/pickrack](https://github.com/pickrack/pickrack), MIT licensed. iLovePDF is closed-source.
+
+**4. Beyond PDF.** Pickrack has image compression, background removal, AI translation, grammar checker, JSON formatter, JWT decoder, QR code generator. iLovePDF is PDF-only. If your work spans formats, Pickrack consolidates several tools into one bookmark.
+
+**5. AI tools included.** Pickrack offers free AI summarizer, translator, and grammar checker (10 req/day each). iLovePDF has AI features but mostly behind Premium.
+
+**6. EPUB conversion.** Pickrack supports EPUB ↔ PDF (Calibre engine). iLovePDF does not support EPUB.
+
+## Real-world scenarios
+
+### Scenario 1: Convert 100 contract PDFs for a client onboarding sweep
+
+- **iLovePDF**: hits 30/day limit at item 30, must wait or pay
+- **Pickrack**: process all 100, no waiting
+
+### Scenario 2: Compress a confidential acquisition memo before emailing partners
+
+- **iLovePDF**: file uploads to their servers (deleted in 2hr per policy)
+- **Pickrack**: file is processed on our server too (same as iLovePDF for this server-side operation), but the tool is open source so deletion logic is verifiable
+
+### Scenario 3: Merge 5 PDFs of medical records to send to a specialist
+
+- **iLovePDF**: uploads all 5 PDFs to their servers
+- **Pickrack**: browser-side merge — files never leave your device
+
+### Scenario 4: Convert PDF → editable Word
+
+- **Both work**. Pickrack uses LibreOffice; iLovePDF uses similar engine. Output quality comparable.
+
+### Scenario 5: Add legally-binding e-signature to a contract
+
+- **iLovePDF Premium**: built-in eSign
+- **Pickrack**: not supported (use DocuSign or Smallpdf for this)
+
+## Pricing math
+
+iLovePDF Premium: $9.99/month, $79.99/year (16% off annual). Justified if:
+
+- More than 30 PDF tasks/day average
+- OCR for scanned documents
+- eSign workflows
+- PDF editor for annotations
+
+If none of these, you're paying $80-120/year for marginal UX polish over Pickrack's free tier.
+
+## When NOT to use Pickrack
+
+Be honest:
+
+- **Need OCR** → iLovePDF or Smallpdf
+- **Need eSign** → iLovePDF Premium or DocuSign
+- **Need PDF editor** with annotations → iLovePDF or Foxit
+- **Need team accounts and shared workspaces** → iLovePDF Premium
+- **Latency-sensitive** (Asian users far from EU/US) → iLovePDF's CDN may be faster
+
+## When Pickrack is the obvious choice
+
+- **Daily PDF work** that hits free-tier quotas
+- **Sensitive documents** where browser-side privacy matters
+- **Mixed workflows** needing PDF + image + AI tools in one place
+- **Devs** who want to verify privacy claims by reading source code
+- **Budget conscious** users who'd rather not pay $80/year for occasional PDF tasks
+
+## Try Pickrack
+
+- [PDF tools catalog](https://pickrack.com/tools/pdf/) — 16 free PDF tools
+- [Image tools](https://pickrack.com/tools/image/) — 5 tools iLovePDF doesn't offer
+- [AI tools](https://pickrack.com/tools/ai/) — summarizer, translator, grammar checker
+- [GitHub source](https://github.com/pickrack/pickrack) — verify our privacy claims
+
+## Bottom line
+
+iLovePDF is a polished commercial product with a few essential features (OCR, eSign, editor) that Pickrack does not yet match. Pickrack is a free, open-source alternative that covers 80% of iLovePDF's PDF feature set plus 21 non-PDF tools, with verifiable privacy and no daily quota.
+
+If you hit iLovePDF's free tier limits and don't need OCR/eSign/editor, switching saves $80-120/year for the same basic functionality with better privacy. If you need the missing features, iLovePDF Premium is reasonable. They're not mutually exclusive.

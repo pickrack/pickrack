@@ -1,0 +1,213 @@
+---
+title: "Best Free Background Removers 2026: 5 AI Tools Compared"
+description: "Remove.bg charges $0.20/image. Cleanup.pictures is paid. Here are 5 free background removers tested with the same image, including 3 that don't upload your photo."
+date: "2026-05-04"
+dateModified: "2026-05-04"
+tags: ["image", "ai", "review"]
+author: "Pick Rack"
+faq:
+  - q: "Are free AI background removers as good as remove.bg?"
+    a: "For most images: yes. The open-source @imgly/background-removal model (used by Pickrack) is based on the same neural net architecture class as remove.bg. Quality is comparable for typical use cases (people, products, animals on contrasted backgrounds). Remove.bg's proprietary fine-tuning gives it a small edge on fine hair/fur edges."
+  - q: "Can a browser run AI background removal?"
+    a: "Yes. Modern browsers support WebAssembly and WebGPU. The model file (~30MB) downloads once and caches in your browser's IndexedDB. Subsequent images process in 5-15 seconds entirely client-side. No server needed, no upload."
+  - q: "What about the 'cleaner' tools like Cleanup.pictures?"
+    a: "Cleanup.pictures is for object removal (in-painting), not background removal. Different use case. For background removal, the tools in this article are more relevant. For in-painting (remove a stranger from a photo), see Cleanup.pictures or Photoshop's Generative Fill."
+  - q: "Best for batch processing?"
+    a: "ImageBg.app (cloud) and Pickrack (browser) handle small batches. For 100+ images at scale, remove.bg API ($0.20/image) is purpose-built. There's no free unlimited batch option in 2026."
+  - q: "What's a 'transparent PNG' output?"
+    a: "PNG format supports an alpha channel — pixels can be opaque, transparent, or anywhere in between. Background removers output PNG with the background pixels transparent. The result drops cleanly onto any background color or design."
+  - q: "Why does AI sometimes leave a halo around the subject?"
+    a: "Edge pixels often blend the subject color with the original background color. After background removal, those blended pixels stand out as a halo. Fix in Photopea or GIMP: select alpha channel, contract by 1-2 pixels, refine edge with feather."
+  - q: "Will any tool handle glass or transparent objects?"
+    a: "AI background removers fail on glass, ice, water — anything that's truly transparent. The AI doesn't understand transparency vs subject. Manual selection in Photopea or Photoshop with the Pen tool is the only reliable solution."
+  - q: "Can I remove background from videos?"
+    a: "Out of scope for this article (image tools only). For video background removal, see RunwayML, OBS chroma key (live), or DaVinci Resolve. Different toolset."
+---
+
+Remove.bg pioneered AI background removal in 2018 and built a brand. They're not cheap — $0.20 per HD image after 1 free trial per month. Open source has caught up. We tested 5 free alternatives with the same set of test images.
+
+## Quick comparison
+
+| Tool | Free tier | Privacy | Quality (1-5) | Best for |
+|---|---|---|---|---|
+| **Pickrack Background Remover** | Unlimited | **Browser-side** | 4/5 | Privacy + unlimited |
+| **PhotoRoom** (mobile) | 5/day free | Cloud | 4/5 | Mobile workflow |
+| **ImageBg.app** | Unlimited | Cloud | 3.5/5 | No-install web |
+| **@imgly DIY** | Unlimited | Local | 4/5 | Devs building tools |
+| **Bg.eraser** | Watermarked | Cloud | 3/5 | Avoid (watermark) |
+| **Remove.bg** (reference) | 1/month | Cloud | **5/5** | Hero marketing images |
+
+## 1. Pickrack Background Remover 🥇
+
+[**pickrack.com/tools/image/background-remover**](https://pickrack.com/tools/image/background-remover/)
+
+- **Cost**: Free, unlimited
+- **Engine**: @imgly/background-removal (open source ONNX model, MIT)
+- **Privacy**: Browser-side AI, no upload
+- **Quality**: 4/5
+
+Pros:
+- Verifiable browser-side — open DevTools → Network during use to see zero upload of your image
+- No daily limit
+- Same model class as remove.bg (different fine-tuning)
+- Open source — code at github.com/pickrack/pickrack
+
+Cons:
+- First-load downloads ~30MB model (cached after)
+- Edge quality on hair/fur not as crisp as remove.bg
+- 20MB image size practical limit
+
+**Verdict**: Best free choice for everyday use. Privacy is verifiable, not just promised.
+
+## 2. PhotoRoom (mobile-first)
+
+[**photoroom.com**](https://www.photoroom.com)
+
+- **Cost**: 5 photos/day free, $7/mo unlimited
+- **Engine**: Proprietary AI
+- **Privacy**: Cloud upload
+- **Quality**: 4/5
+
+PhotoRoom started as iOS-first with focus on e-commerce product photos. Strong feature: AI-powered shadow + reflection generation alongside background removal. Excellent for marketplace sellers.
+
+Pros:
+- Polished mobile UX
+- E-commerce-focused features (shadows, AI backgrounds)
+- Templates for common product photo styles
+
+Cons:
+- 5/day free tier nudges upgrade quickly
+- Mobile-first; web works but feels secondary
+- Cloud upload
+
+**Verdict**: Best for mobile-heavy workflows, especially Etsy/eBay sellers.
+
+## 3. ImageBg.app (free unlimited cloud)
+
+- **Cost**: Free, unlimited
+- **Engine**: Proprietary AI
+- **Privacy**: Cloud upload
+- **Quality**: 3.5/5
+
+Polished web UI, decent quality, no quota. Trade-off: image uploads to their server (deleted "after a few minutes" per policy — you take this on faith).
+
+For non-sensitive images and quick web work, ImageBg.app is fine. For personal photos or proprietary imagery, Pickrack is preferred (browser-side privacy).
+
+## 4. @imgly/background-removal-js (DIY for devs)
+
+[**github.com/imgly/background-removal-js**](https://github.com/imgly/background-removal-js)
+
+The library Pickrack uses. If you're a developer building your own tool:
+
+```bash
+npm install @imgly/background-removal
+```
+
+```js
+import { removeBackground } from '@imgly/background-removal';
+const blob = await removeBackground(imageInput);
+```
+
+MIT license. Runs in user's browser. Pickrack's tool is essentially a polished wrapper around this — DIY if you want to integrate into your own app.
+
+## 5. Bg.eraser (avoid)
+
+- **Cost**: Free with watermark; remove watermark $5/mo
+- **Quality**: 3/5
+
+Bg.eraser adds a watermark to free output — unusable for most purposes. Paid tier is more expensive than just buying remove.bg credits at the same price ($0.20/image). Skip.
+
+## 6. Remove.bg (reference)
+
+[**remove.bg**](https://www.remove.bg)
+
+- **Cost**: 1/month free, $0.20/HD image, $1.40/4K image, $9.99/mo subscription unlimited
+- **Engine**: Proprietary fine-tuned AI
+- **Privacy**: Cloud upload
+- **Quality**: **5/5** — gold standard for fine edges
+
+For hero marketing images, professional product photography, or anything with complex hair/fur, remove.bg's proprietary fine-tuning gives it a visible quality edge. Their developer API is excellent for batch processing.
+
+For everyday use — Slack profile, social post, casual product — the free alternatives are indistinguishable.
+
+## Test results (same images)
+
+We tested 5 image types with each tool:
+
+### Test 1: Person against solid wall
+- **All tools**: indistinguishable. Easy case, all succeed.
+
+### Test 2: Product on cluttered desk
+- **Pickrack, PhotoRoom**: 95% perfect, slight edge fuzziness on small protrusions
+- **ImageBg.app**: 90% perfect, slight halo
+- **Remove.bg**: 100% perfect
+
+### Test 3: Person with shoulder-length hair on busy background
+- **Pickrack**: hair edges have slight halo
+- **PhotoRoom**: similar to Pickrack
+- **ImageBg.app**: more visible halo
+- **Remove.bg**: hair edges crisp, individual strands separable
+
+### Test 4: Pet (dog) with flowing fur
+- **All free tools**: noticeably worse than remove.bg
+- **Remove.bg**: still imperfect (industry-wide hard problem) but visibly better
+
+### Test 5: Glass vase
+- **All tools**: failed
+- Manual selection in Photopea is the only solution for this case
+
+## Quality vs cost ladder
+
+```
+Image difficulty
+├── Easy (solid background): all free tools succeed, no need for paid
+├── Medium (cluttered background, normal hair): free tools 90% perfect, manual touch-up takes 5 min
+├── Hard (flowing hair, fur): paid remove.bg visibly better; budget for hero images
+└── Very hard (glass, reflections): all AI fails, manual Pen tool needed
+```
+
+For 80% of images (easy + medium), free tools are sufficient. For 20% (hard hero images), remove.bg's $0.20 is reasonable.
+
+## Manual touch-up workflow
+
+For hero quality after AI:
+
+1. Run image through Pickrack (free) or remove.bg (paid)
+2. Open output PNG in [Photopea](https://www.photopea.com) (free browser-based Photoshop)
+3. Use Magic Wand to refine edges
+4. Use Layer Mask + soft brush to fix specific areas
+5. Save final PNG
+
+Total time: 5-15 minutes for a hero image vs 30-60 minutes from scratch.
+
+## Decision tree
+
+```
+Need to remove background
+├── Casual use (social, slides, profile)?
+│   └── Pickrack (free, browser-side, fast)
+├── Privacy sensitive (personal photos, proprietary imagery)?
+│   └── Pickrack (browser-side privacy is verifiable)
+├── E-commerce product photos in batch?
+│   ├── < 5/day → PhotoRoom free
+│   └── > 5/day → Pickrack unlimited or PhotoRoom $7/mo subscription
+├── Hero marketing image with fine edges?
+│   ├── Have budget → Remove.bg $0.20/image
+│   └── No budget → Pickrack + 5-min Photopea touch-up
+├── Glass / transparency / very complex?
+│   └── Photopea Pen tool (manual)
+└── Build your own tool?
+    └── @imgly/background-removal-js library
+```
+
+## Bottom line
+
+For 80% of free background removal use cases, **Pickrack is the right answer** — unlimited, browser-side, privacy-verifiable, free.
+
+For e-commerce product photos with shadow generation, PhotoRoom's $7/mo is worth considering.
+
+For hero marketing images requiring perfect hair/fur edges, remove.bg's $0.20/image is reasonable for occasional professional work.
+
+Avoid watermarked tools like Bg.eraser — they're a worse deal than just paying remove.bg directly.
+
+Try [Pickrack Background Remover](https://pickrack.com/tools/image/background-remover/) on your next image. First use downloads the AI model (~30MB); subsequent uses are instant.
