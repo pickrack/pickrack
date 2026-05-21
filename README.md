@@ -4,7 +4,7 @@
 
 [**Live demo → pickrack.com**](https://pickrack.com)
 
-37 free tools across 6 categories: PDF, Image, AI, Developer, Text, Calculators. No signup, no daily limit, no watermark. Server-side tools (compression, conversion, AI) are explicitly labeled and delete inputs immediately after the response.
+51 free tools across 6 categories: PDF, Image, AI, Developer, Text, Calculators. No signup, no daily limit, no watermark. Server-side tools (compression, conversion, AI) are explicitly labeled and delete inputs immediately after the response.
 
 ---
 
@@ -18,43 +18,43 @@ Most free online tools are bait-and-switch:
 - **remove.bg** gives **1 free image/month**, then charges $0.20/image.
 - **Adobe Acrobat Pro** is **$19.99/mo** ($239.88/year).
 
-Pickrack offers no daily quota, no watermark, no signup. Most tools (32 of 37) run entirely in your browser using Canvas, WebAssembly, or Web Crypto APIs — your files never upload. Server-side tools that need it (Ghostscript compression, LibreOffice conversion, Calibre EPUB, AI via Anthropic Claude) are clearly labeled and delete inputs immediately.
+Pickrack offers no daily quota, no watermark, no signup. Most tools (34 of 51) run entirely in your browser using Canvas, WebAssembly, or Web Crypto APIs — your files never upload. Server-side tools that need it (Ghostscript compression, LibreOffice conversion, Calibre EPUB, AI via Anthropic Claude, live FX rates) are clearly labeled and delete inputs immediately.
 
 The site is sustained by display advertising and affiliate commissions on **unrelated** products (premium tools we test and recommend in our blog). Tool functionality is fully unrestricted.
 
 ---
 
-## Tools (37)
+## Tools (51)
 
-### 📄 PDF (16, mostly browser-side)
+### 📄 PDF (17, mixed browser + server)
 
-`merge-pdf` · `split-pdf` · `rotate-pdf` · `watermark-pdf` · `jpg-to-pdf` · `pdf-to-jpg` · `compress-pdf` · `unlock-pdf` · `protect-pdf` · `pdf-to-markdown` · `word-to-pdf` · `pdf-to-word` · `pptx-to-pdf` · `pdf-to-pptx` · `epub-to-pdf` · `pdf-to-epub`
+`merge-pdf` · `split-pdf` · `rotate-pdf` · `watermark-pdf` · `jpg-to-pdf` · `pdf-to-jpg` · `screenshot-to-pdf` · `compress-pdf` · `unlock-pdf` · `protect-pdf` · `pdf-to-markdown` · `word-to-pdf` · `pdf-to-word` · `pptx-to-pdf` · `pdf-to-pptx` · `epub-to-pdf` · `pdf-to-epub`
 
 Engines: [pdf-lib](https://github.com/Hopding/pdf-lib) (browser), [qpdf](https://github.com/qpdf/qpdf) (server, AES-256), [Ghostscript](https://www.ghostscript.com) (compression), [pdftotext / pdftoppm](https://poppler.freedesktop.org) (Poppler), [LibreOffice](https://www.libreoffice.org) headless (Office formats), [Calibre ebook-convert](https://calibre-ebook.com) (EPUB), [pptxgenjs](https://github.com/gitbrent/PptxGenJS) (PDF→PPTX image-per-slide).
 
-### 🖼️ Image (5, all browser-side)
+### 🖼️ Image (8, all browser-side)
 
-`image-resizer` · `image-compressor` · `image-converter` · `heic-to-jpg` · `background-remover`
+`image-resizer` · `image-compressor` · `image-converter` · `image-cropper` · `image-upscaler` · `heic-to-jpg` · `background-remover` · `color-palette`
 
-Engines: Canvas API for resize/compress/convert, [heic2any](https://github.com/alexcorvi/heic2any) for HEIC, [@imgly/background-removal](https://github.com/imgly/background-removal-js) for AI background removal (~30MB ONNX model, downloaded once and cached).
+Engines: Canvas API for resize/compress/convert/crop/upscale, [heic2any](https://github.com/alexcorvi/heic2any) for HEIC, [@imgly/background-removal](https://github.com/imgly/background-removal-js) for AI background removal (~30MB ONNX model, downloaded once and cached), k-means clustering on Canvas pixel data for color-palette.
 
-### 🤖 AI (3, server-side via Anthropic Claude)
+### 🤖 AI (6, server-side via Anthropic Claude)
 
-`ai-summarizer` · `ai-translator` · `ai-grammar-checker`
+`ai-summarizer` · `ai-translator` · `ai-grammar-checker` · `translate-document` · `chat-with-pdf` · `youtube-summarizer`
 
-Powered by Claude Haiku 4.5. Anthropic's commercial API agreement excludes API inputs from training. Pickrack does not log inputs or outputs. Free tier: 10 requests per IP per day (covers 99% of casual use).
+Powered by Claude Haiku 4.5. Anthropic's commercial API agreement excludes API inputs from training. Pickrack does not log inputs or outputs. Free tier: 10 requests per IP per day (covers 99% of casual use). `chat-with-pdf` and `translate-document` extract text via Poppler/LibreOffice server-side, then chunk + stream through Claude. `youtube-summarizer` pulls the transcript from YouTube's caption track and summarizes the chunked output.
 
-### 💻 Developer (6, all browser-side)
+### 💻 Developer (9, all browser-side)
 
-`json-formatter` · `base64-encoder` · `jwt-decoder` · `hash-generator` (MD5/SHA-1/SHA-256/SHA-512) · `uuid-generator` (1-1000 bulk) · `regex-tester` (live match + capture groups + 6 presets)
+`json-formatter` · `base64-encoder` · `jwt-decoder` · `hash-generator` (MD5/SHA-1/SHA-256/SHA-512) · `uuid-generator` (1-1000 bulk) · `regex-tester` (live match + capture groups + 6 presets) · `diff-checker` (line + word diff, side-by-side) · `timestamp-converter` (Unix ↔ ISO ↔ human, multi-timezone) · `gradient-generator` (CSS linear/radial/conic with code export)
 
-### ✏️ Text (4, all browser-side)
+### ✏️ Text (5, all browser-side)
 
-`word-counter` · `case-converter` (9 variants) · `lorem-ipsum` · `slug-generator` (Vietnamese diacritic stripping)
+`word-counter` · `case-converter` (9 variants) · `lorem-ipsum` · `slug-generator` (Vietnamese diacritic stripping) · `markdown-to-html` (live preview, GitHub-flavored, copy-as-HTML)
 
-### 🧮 Calculators (3, all browser-side)
+### 🧮 Calculators (6, 5 browser-side + 1 server-side)
 
-`password-generator` (crypto.getRandomValues, entropy meter) · `qr-generator` (URL/text/WiFi/vCard/email, PNG+SVG) · `age-calculator` (Y/M/D/h/m + leap-year handling)
+`password-generator` (crypto.getRandomValues, entropy meter) · `qr-generator` (URL/text/WiFi/vCard/email, PNG+SVG) · `age-calculator` (Y/M/D/h/m + leap-year handling) · `bmi-calculator` (metric + imperial, WHO categories) · `tip-calculator` (multi-person split, tax-inclusive) · `currency-converter` (live rates from exchangerate-api, server-side proxy to keep the API key out of the client)
 
 ---
 
@@ -62,9 +62,10 @@ Powered by Claude Haiku 4.5. Anthropic's commercial API agreement excludes API i
 
 | Tool category | Where data is processed | Data retention |
 |---|---|---|
-| Browser-side (32 of 37) | Your browser only | Never sent anywhere |
+| Browser-side (34 of 51) | Your browser only | Never sent anywhere |
 | Server-side PDF (qpdf, gs, pdftotext, LibreOffice, Calibre) | Your file uploads to our server, processed in a temp dir, deleted immediately on response | Zero retention |
 | Server-side AI (Anthropic) | Your text sent to api.anthropic.com over HTTPS | Anthropic retains 30 days for abuse monitoring, then deletes; not used for training |
+| Server-side FX (exchangerate-api) | Only the currency codes are sent — no user data | None |
 | Site analytics | Google Analytics 4 page views (anonymous) | Per Google's policy |
 | Display ads | Google AdSense (non-personalized where possible) | Per Google's policy |
 
@@ -153,7 +154,7 @@ When we use server-side processing (PDF compression with Ghostscript, format con
 
 Premium tiers create incentive misalignment: free users get worse UX (watermarks, quotas, hidden upsells) so they upgrade. We sustain costs via display ads (auto-loading, never inside the tool itself) and affiliate commissions on premium tools we honestly review in our blog. If you'd like to support development, see "Sponsoring" below.
 
-### Why a single repo for 37 tools
+### Why a single repo for 51 tools
 
 Keeps the entire codebase auditable in one place. Each tool is roughly 200-400 lines of code under `app/tools/<category>/<slug>/`. Shared infrastructure (SEO, schema, layout) is in `lib/` and `components/`. Adding a new tool is ~3 files (page.tsx, layout.tsx, content + SEO entries).
 
