@@ -4,7 +4,7 @@
 
 [**Live demo → pickrack.com**](https://pickrack.com)
 
-51 free tools across 6 categories: PDF, Image, AI, Developer, Text, Calculators. No signup, no daily limit, no watermark. Server-side tools (compression, conversion, AI) are explicitly labeled and delete inputs immediately after the response.
+56 free tools across 6 categories: PDF, Image, AI, Developer, Text, Calculators. No signup, no daily limit, no watermark. Server-side tools (compression, conversion, AI) are explicitly labeled and delete inputs immediately after the response.
 
 ---
 
@@ -18,13 +18,13 @@ Most free online tools are bait-and-switch:
 - **remove.bg** gives **1 free image/month**, then charges $0.20/image.
 - **Adobe Acrobat Pro** is **$19.99/mo** ($239.88/year).
 
-Pickrack offers no daily quota, no watermark, no signup. Most tools (34 of 51) run entirely in your browser using Canvas, WebAssembly, or Web Crypto APIs — your files never upload. Server-side tools that need it (Ghostscript compression, LibreOffice conversion, Calibre EPUB, AI via Anthropic Claude, live FX rates) are clearly labeled and delete inputs immediately.
+Pickrack offers no daily quota, no watermark, no signup. Most tools (39 of 56) run entirely in your browser using Canvas, WebAssembly, or Web Crypto APIs — your files never upload. Server-side tools that need it (Ghostscript compression, LibreOffice conversion, Calibre EPUB, AI via Anthropic Claude, live FX rates) are clearly labeled and delete inputs immediately.
 
 The site is sustained by display advertising and affiliate commissions on **unrelated** products (premium tools we test and recommend in our blog). Tool functionality is fully unrestricted.
 
 ---
 
-## Tools (51)
+## Tools (56)
 
 ### 📄 PDF (17, mixed browser + server)
 
@@ -44,9 +44,11 @@ Engines: Canvas API for resize/compress/convert/crop/upscale, [heic2any](https:/
 
 Powered by Claude Haiku 4.5. Anthropic's commercial API agreement excludes API inputs from training. Pickrack does not log inputs or outputs. Free tier: 10 requests per IP per day (covers 99% of casual use). `chat-with-pdf` and `translate-document` extract text via Poppler/LibreOffice server-side, then chunk + stream through Claude. `youtube-summarizer` pulls the transcript from YouTube's caption track and summarizes the chunked output.
 
-### 💻 Developer (9, all browser-side)
+### 💻 Developer (14, all browser-side)
 
-`json-formatter` · `base64-encoder` · `jwt-decoder` · `hash-generator` (MD5/SHA-1/SHA-256/SHA-512) · `uuid-generator` (1-1000 bulk) · `regex-tester` (live match + capture groups + 6 presets) · `diff-checker` (line + word diff, side-by-side) · `timestamp-converter` (Unix ↔ ISO ↔ human, multi-timezone) · `gradient-generator` (CSS linear/radial/conic with code export)
+`json-formatter` · `base64-encoder` · `jwt-decoder` · `hash-generator` (MD5/SHA-1/SHA-256/SHA-512) · `uuid-generator` (1-1000 bulk) · `regex-tester` (live match + capture groups + 6 presets) · `diff-checker` (line + word diff, side-by-side) · `timestamp-converter` (Unix ↔ ISO ↔ human, multi-timezone) · `gradient-generator` (CSS linear/radial/conic with code export) · `color-converter` (HEX ↔ RGB ↔ HSL ↔ HSV with live WCAG contrast vs white/black) · `url-encoder` (encodeURIComponent / encodeURI toggle, decode mode) · `html-entity-encoder` (named, numeric, or all-non-ASCII output; decodes hex + decimal) · `sql-formatter` (11 dialects: MySQL / PostgreSQL / SQLite / MS SQL / BigQuery / Snowflake / Redshift / Oracle PL/SQL / MariaDB / Spark / standard SQL — indent + keyword case) · `yaml-json-converter` (bidirectional, anchor resolution on YAML → JSON, inline parse errors)
+
+Library engines: [sql-formatter](https://github.com/sql-formatter-org/sql-formatter) for SQL pretty-print, [js-yaml](https://github.com/nodeca/js-yaml) for YAML parse/serialize. All other dev tools are pure JavaScript / Web Crypto.
 
 ### ✏️ Text (5, all browser-side)
 
@@ -62,7 +64,7 @@ Powered by Claude Haiku 4.5. Anthropic's commercial API agreement excludes API i
 
 | Tool category | Where data is processed | Data retention |
 |---|---|---|
-| Browser-side (34 of 51) | Your browser only | Never sent anywhere |
+| Browser-side (39 of 56) | Your browser only | Never sent anywhere |
 | Server-side PDF (qpdf, gs, pdftotext, LibreOffice, Calibre) | Your file uploads to our server, processed in a temp dir, deleted immediately on response | Zero retention |
 | Server-side AI (Anthropic) | Your text sent to api.anthropic.com over HTTPS | Anthropic retains 30 days for abuse monitoring, then deletes; not used for training |
 | Server-side FX (exchangerate-api) | Only the currency codes are sent — no user data | None |
@@ -154,7 +156,7 @@ When we use server-side processing (PDF compression with Ghostscript, format con
 
 Premium tiers create incentive misalignment: free users get worse UX (watermarks, quotas, hidden upsells) so they upgrade. We sustain costs via display ads (auto-loading, never inside the tool itself) and affiliate commissions on premium tools we honestly review in our blog. If you'd like to support development, see "Sponsoring" below.
 
-### Why a single repo for 51 tools
+### Why a single repo for 56 tools
 
 Keeps the entire codebase auditable in one place. Each tool is roughly 200-400 lines of code under `app/tools/<category>/<slug>/`. Shared infrastructure (SEO, schema, layout) is in `lib/` and `components/`. Adding a new tool is ~3 files (page.tsx, layout.tsx, content + SEO entries).
 
