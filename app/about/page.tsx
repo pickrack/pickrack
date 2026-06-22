@@ -3,7 +3,7 @@ import Link from "next/link";
 import { CONTACT_EMAIL, buildWebPageJsonLd } from "@/lib/policy-content";
 import { SITE_NAME, SITE_URL } from "@/lib/site-config";
 
-const PAGE_DESCRIPTION = `${SITE_NAME} is a free, privacy-first online tool suite — 51 tools across PDF, image, AI, dev, text, and calc categories. No signup, no daily quota, no watermark.`;
+const PAGE_DESCRIPTION = `${SITE_NAME} is a free, privacy-first online tool suite — 76 tools across PDF, image, AI, dev, text, and calc categories. No signup, no daily quota, no watermark.`;
 
 export const metadata: Metadata = {
   title: `About ${SITE_NAME}`,
@@ -19,23 +19,23 @@ export default function AboutPage() {
       <h1>About {SITE_NAME}</h1>
 
       <p className="text-xl text-gray-600 leading-relaxed not-prose mb-8">
-        {SITE_NAME} is a free, privacy-first online tool suite — 51 tools across PDF, image, AI, dev, text, and calc — that don&apos;t gate downloads behind a signup, don&apos;t watermark output, and don&apos;t log your files.
+        {SITE_NAME} is a free, privacy-first online tool suite — 76 tools across PDF, image, AI, dev, text, and calc — that don&apos;t gate downloads behind a signup, don&apos;t watermark output, and don&apos;t log your files.
       </p>
 
       <h2>What {SITE_NAME} actually does</h2>
       <p>
-        {SITE_NAME} hosts <strong>51 free tools across six categories</strong>, all accessible from <Link href="/tools/">/tools/</Link>:
+        {SITE_NAME} hosts <strong>76 free tools across six categories</strong>, all accessible from <Link href="/tools/">/tools/</Link>:
       </p>
       <ul>
         <li><strong><Link href="/tools/pdf/">PDF tools (17)</Link></strong> — merge, split, rotate, watermark, compress, unlock, password-protect with AES-256, Word↔PDF, PPTX↔PDF, EPUB↔PDF, JPG↔PDF, extract markdown, screenshot-to-PDF (clipboard paste)</li>
-        <li><strong><Link href="/tools/image/">Image tools (8)</Link></strong> — resize, compress, format conversion (PNG↔JPG↔WebP↔AVIF), HEIC→JPG, AI background removal (WebAssembly, no upload), cropper, upscaler, color-palette extractor</li>
-        <li><strong><Link href="/tools/ai/">AI tools (6)</Link></strong> — summarizer, translator (20 languages), grammar checker, YouTube video summarizer, chat-with-PDF, document translator — all using Anthropic Claude Haiku 4.5</li>
-        <li><strong><Link href="/tools/dev/">Developer tools (9)</Link></strong> — JSON formatter, Base64 codec, JWT decoder, hash generator (MD5/SHA-1/SHA-256/SHA-512), UUID bulk generator, regex tester, Unix timestamp converter, text diff checker, CSS gradient generator</li>
-        <li><strong><Link href="/tools/text/">Text tools (5)</Link></strong> — word counter, case converter (9 variants), Lorem Ipsum, slug generator, markdown-to-HTML</li>
-        <li><strong><Link href="/tools/calc/">Calculators (6)</Link></strong> — password generator, QR code generator (URL/text/Wi-Fi/vCard/email, PNG &amp; SVG), age calculator, tip calculator, BMI calculator, currency converter</li>
+        <li><strong><Link href="/tools/image/">Image tools (13)</Link></strong> — resize, compress, format conversion (PNG↔JPG↔WebP↔AVIF), HEIC→JPG, AI background removal (WebAssembly, no upload), cropper, upscaler, color-palette extractor, EXIF reader, favicon generator, GIF maker, image watermark, SVG optimizer</li>
+        <li><strong><Link href="/tools/ai/">AI tools (9)</Link></strong> — summarizer, translator (20 languages), grammar checker, YouTube video summarizer, chat-with-PDF, document translator (these six use Anthropic Claude Haiku 4.5), plus QR-art generator, AI image upscaler, and image-to-image (these three run on a self-hosted GPU with Stable Diffusion)</li>
+        <li><strong><Link href="/tools/dev/">Developer tools (14)</Link></strong> — JSON formatter, Base64 codec, JWT decoder, hash generator (MD5/SHA-1/SHA-256/SHA-512), UUID bulk generator, regex tester, Unix timestamp converter, text diff checker, CSS gradient generator, color converter, URL encoder, HTML-entity encoder, SQL formatter, YAML↔JSON converter</li>
+        <li><strong><Link href="/tools/text/">Text tools (10)</Link></strong> — word counter, case converter (9 variants), Lorem Ipsum, slug generator, markdown-to-HTML, find &amp; replace, line numberer, remove duplicates, sort lines, word-frequency counter</li>
+        <li><strong><Link href="/tools/calc/">Calculators (13)</Link></strong> — password generator, QR code generator (URL/text/Wi-Fi/vCard/email, PNG &amp; SVG), QR batch, QR scanner, age calculator, tip calculator, BMI calculator, percentage calculator, mortgage calculator, contrast checker, Pomodoro timer, random picker, currency converter</li>
       </ul>
       <p>
-        31 of the 51 tools run <strong>entirely in your browser</strong> using Canvas, Web Crypto, pdf-lib, and WebAssembly. Your file does not touch our server. The remaining 20 (PDF compress, format conversions, AI tools, currency rate fetch) need a server because they shell out to native binaries (Ghostscript, qpdf, LibreOffice, Calibre) or call a third-party API with a key that must stay server-side. For server-side tools, files are written to a temp directory, processed, returned, and deleted in a <code>finally</code> block — there is no database, no logging of file contents. For AI tools, only the extracted text reaches our server (PDFs are parsed in your browser for chat-with-PDF and document translation).
+        56 of the 76 tools run <strong>entirely in your browser</strong> using Canvas, Web Crypto, pdf-lib, and WebAssembly. Your file does not touch our server. The remaining 20 (PDF compress, format conversions, AI tools, currency rate fetch) need a server because they shell out to native binaries (Ghostscript, qpdf, LibreOffice, Calibre) or call a third-party API with a key that must stay server-side. For server-side tools, files are written to a temp directory, processed, returned, and deleted in a <code>finally</code> block — there is no database, no logging of file contents. For AI tools, only the extracted text reaches our server (PDFs are parsed in your browser for chat-with-PDF and document translation).
       </p>
 
       <h2>Who runs {SITE_NAME}</h2>
@@ -129,7 +129,7 @@ export default function AboutPage() {
 
       <p className="not-prose mt-10 flex flex-wrap gap-4">
         <Link href="/tools/" className="inline-flex items-center gap-1 text-emerald-600 hover:text-emerald-700 font-medium">
-          → Browse all 51 tools
+          → Browse all 76 tools
         </Link>
         <Link href="/authors/david-pham/" className="inline-flex items-center gap-1 text-emerald-600 hover:text-emerald-700 font-medium">
           → About the founder

@@ -43,7 +43,7 @@ const intro = (
       Image processing online has historically meant uploading your photo to a third-party server, waiting, then downloading the result. That model dates from a time when JavaScript engines were too slow to handle decoding and re-encoding images at acceptable speed. Both of those constraints are gone in 2026. Modern browsers expose the <strong>Canvas API</strong>, <strong>Web Workers</strong>, and <strong>WebAssembly</strong>, which together let JavaScript do everything from JPEG re-encoding to neural-network background removal at near-native speed.
     </p>
     <p>
-      Every one of Pickrack&apos;s eight image tools runs <em>entirely in your browser</em>. Open DevTools, switch to the Network tab, click any tool button — there are no upload requests. Your photo is loaded into browser memory, processed on your device, and downloaded back. There is no server-side path for these tools. We could not access your image even if we wanted to.
+      Every one of Pickrack&apos;s thirteen image tools runs <em>entirely in your browser</em>. Open DevTools, switch to the Network tab, click any tool button — there are no upload requests. Your photo is loaded into browser memory, processed on your device, and downloaded back. There is no server-side path for these tools. We could not access your image even if we wanted to.
     </p>
     <h2>Which Pickrack image tool to use when</h2>
     <ul>

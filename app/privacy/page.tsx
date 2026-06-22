@@ -23,20 +23,20 @@ export default function PrivacyPage() {
       </p>
 
       <h2>1. How Pickrack Tools Process Your Files</h2>
-      <p>{SITE_NAME} offers 51 free tools across PDF, image, AI, dev, text, and calc categories. Different tools have different data flows, and we want to be specific about each.</p>
+      <p>{SITE_NAME} offers 76 free tools across PDF, image, AI, dev, text, and calc categories. Different tools have different data flows, and we want to be specific about each.</p>
 
-      <h3>1.1 Browser-side tools (31 of 51)</h3>
+      <h3>1.1 Browser-side tools (56 of 76)</h3>
       <p>The following tools run <strong>entirely in your browser</strong>. Your file is loaded into your browser memory, processed by JavaScript or WebAssembly running on your device, and downloaded back. <strong>The file never reaches our server.</strong> We could not access it even if we wanted to:</p>
       <ul>
         <li><strong>PDF (7)</strong>: Merge PDF, Split PDF, Rotate PDF, Watermark PDF, JPG to PDF, PDF to JPG, Screenshot to PDF (pdf-lib + clipboard paste)</li>
-        <li><strong>Image (8)</strong>: Image Resizer, Image Compressor, Image Converter, HEIC to JPG (heic2any), Background Remover (@imgly/background-removal WebAssembly), Image Cropper, Image Upscaler, Color Palette Extractor</li>
-        <li><strong>Developer (9)</strong>: JSON Formatter, Base64 Encoder, JWT Decoder, Hash Generator (Web Crypto API), UUID Generator, Regex Tester, Timestamp Converter, Text Diff Checker, CSS Gradient Generator</li>
-        <li><strong>Text (5)</strong>: Word Counter, Case Converter, Lorem Ipsum, Slug Generator, Markdown to HTML (marked library)</li>
-        <li><strong>Calc (3)</strong>: Password Generator, QR Code Generator, Age Calculator (the Tip Calculator, BMI Calculator, and Currency Converter — listed under Calc — are also browser-side; Currency Converter additionally calls exchangerate-api.com directly from your browser for live rates)</li>
+        <li><strong>Image (13)</strong>: Image Resizer, Image Compressor, Image Converter, HEIC to JPG (heic2any), Background Remover (@imgly/background-removal WebAssembly), Image Cropper, Image Upscaler, Color Palette Extractor, EXIF Reader, Favicon Generator, GIF Maker, Image Watermark, SVG Optimizer</li>
+        <li><strong>Developer (14)</strong>: JSON Formatter, Base64 Encoder, JWT Decoder, Hash Generator (Web Crypto API), UUID Generator, Regex Tester, Timestamp Converter, Text Diff Checker, CSS Gradient Generator, Color Converter, URL Encoder, HTML-Entity Encoder, SQL Formatter, YAML↔JSON Converter</li>
+        <li><strong>Text (10)</strong>: Word Counter, Case Converter, Lorem Ipsum, Slug Generator, Markdown to HTML (marked library), Find &amp; Replace, Line Numberer, Remove Duplicates, Sort Lines, Word Frequency</li>
+        <li><strong>Calc (12)</strong>: Password Generator, QR Code Generator, QR Batch, QR Scanner, Age Calculator, Tip Calculator, BMI Calculator, Percentage Calculator, Mortgage Calculator, Contrast Checker, Pomodoro Timer, Random Picker (the Currency Converter is the one calc tool that is server-side — see 1.2)</li>
       </ul>
       <p>You can verify this in your browser&apos;s DevTools (Network tab) — no upload requests fire when you use these tools.</p>
 
-      <h3>1.2 Server-side PDF tools (10 of 51)</h3>
+      <h3>1.2 Server-side PDF tools (10 of 76)</h3>
       <p>Some PDF operations require native binaries (Ghostscript, qpdf, LibreOffice, Calibre, Poppler) that have no browser equivalent. For these, your file <strong>is</strong> sent to our server. The exact pipeline:</p>
       <ul>
         <li>Your file is written to a unique temporary directory under <code>/tmp</code></li>
@@ -46,15 +46,17 @@ export default function PrivacyPage() {
         <li>There is no database. There is no cloud storage bucket. There is no log of file contents</li>
       </ul>
       <p>The 10 server-side tools are: Compress PDF, PDF to Markdown, Unlock PDF, Protect PDF (AES-256), Word to PDF, PDF to Word, PPTX to PDF, PDF to PPTX, EPUB to PDF, PDF to EPUB. Source for each route is at <a href="https://github.com/pickrack/pickrack/tree/main/app/api/pdf" target="_blank" rel="noopener noreferrer">github.com/pickrack/pickrack/tree/main/app/api/pdf</a>.</p>
+      <p>Separately, the <strong>Currency Converter</strong> (calc) is server-side only in that it proxies a live FX-rate API: it sends just the currency codes you pick (e.g. <code>USD</code>, <code>EUR</code>) — never any of your data — through our server so the API key stays off the client. Rates are cached for an hour.</p>
 
-      <h3>1.3 AI tools (6 of 51)</h3>
-      <p>The AI Summarizer, AI Translator, AI Grammar Checker, YouTube Summarizer, Chat with PDF, and Translate Document tools call Anthropic&apos;s Claude Haiku 4.5 API on the backend. Specifically:</p>
+      <h3>1.3 AI tools (9 of 76)</h3>
+      <p>Six of the AI tools are text-based — AI Summarizer, AI Translator, AI Grammar Checker, YouTube Summarizer, Chat with PDF, and Translate Document — and call Anthropic&apos;s Claude Haiku 4.5 API on the backend. Specifically:</p>
       <ul>
         <li><strong>Only the text you typed</strong> (or, for Chat with PDF and Translate Document, the text extracted from your PDF entirely inside your browser) is sent — never a file binary, never an IP-linked identifier, never any account information (you don&apos;t have an account)</li>
         <li>For the YouTube Summarizer, we additionally fetch the public YouTube transcript from your video URL on our server; the video binary is never downloaded</li>
         <li>Anthropic&apos;s API agreement excludes API inputs from training. Inputs are deleted within 30 days per their data retention policy: <a href="https://www.anthropic.com/api" target="_blank" rel="noopener noreferrer">anthropic.com/api</a></li>
         <li>Pickrack does not log AI inputs, outputs, or any text content — only a per-IP rate-limit counter (10/day for Summarizer/Translator/Grammar/YouTube; 30/day for Chat with PDF turns; 5/day for Translate Document) which contains no user data</li>
       </ul>
+      <p>The remaining three AI tools — <strong>QR-Art Generator</strong>, <strong>AI Image Upscaler</strong>, and <strong>Image-to-Image</strong> — are image-based. Your uploaded image is sent to a <strong>self-hosted GPU worker we operate on our own hardware</strong> (Stable Diffusion / Swin2SR) — never a third party. The image is processed in GPU memory and is not written to disk, stored, or logged; only the resulting image is returned.</p>
 
       <h3>1.4 Information you give us directly</h3>
       <p>If you contact us via email, we receive your email address and the contents of your message. We use this only to respond.</p>

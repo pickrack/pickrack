@@ -43,9 +43,9 @@ const intro = (
       Text utilities are the most boring category of online tool — and the most used. A word counter sees more daily traffic than most popular SaaS products. A slug generator is opened thousands of times by marketers and developers every workday. Lorem Ipsum is generated more than any other piece of placeholder text in the world. None of this requires elaborate UI or AI; it requires a fast, ad-light page that does exactly one thing well.
     </p>
     <p>
-      Pickrack&apos;s four text tools are built that way: each is one page, one input box, instant output, no signup, no popup. They are calibrated for the people who actually use them — SEO writers checking word count against a 1,500-word target, editors converting messy ALL-CAPS subject lines to Sentence case, content marketers turning &quot;Bí quyết tối ưu hóa SEO 2026&quot; into a clean URL slug like <code>bi-quyet-toi-uu-hoa-seo-2026</code>, and developers filling a layout mockup with realistic placeholder paragraphs.
+      Pickrack&apos;s ten text tools are built that way: each is one page, one input box, instant output, no signup, no popup. They are calibrated for the people who actually use them — SEO writers checking word count against a 1,500-word target, editors converting messy ALL-CAPS subject lines to Sentence case, content marketers turning &quot;Bí quyết tối ưu hóa SEO 2026&quot; into a clean URL slug like <code>bi-quyet-toi-uu-hoa-seo-2026</code>, and developers filling a layout mockup with realistic placeholder paragraphs.
     </p>
-    <h2>The four text tools and when to reach for each</h2>
+    <h2>The ten text tools and when to reach for each</h2>
     <ul>
       <li><strong><a href="/tools/text/word-counter/">Word Counter</a></strong> — counts words, characters (with and without spaces), sentences, paragraphs, and reading time at 200 words per minute. Live updates as you type. Best for SEO articles, essays, novellas, anything with a length constraint.</li>
       <li><strong><a href="/tools/text/case-converter/">Case Converter</a></strong> — 9 conversion variants: UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, and aLtErNaTiNg cAsE. Unicode-aware so Vietnamese, German umlauts, and other diacritics survive correctly.</li>
