@@ -36,6 +36,34 @@ const FAQ = [
   },
 ];
 
+const intro = (
+  <>
+    <h2>Why developers should care that these run in-browser</h2>
+    <p>
+      Every working developer has the same daily problem: you copy a JWT from a Slack thread to decode it, you paste a JSON blob from a production log to format it, you generate a SHA-256 hash to compare a file against a published checksum. The fastest path is usually a Google search → click first result → paste. The first result is almost always a server-side tool that logs your input for analytics, often with a banner ad in the middle of the result.
+    </p>
+    <p>
+      That &quot;harmless&quot; copy-paste workflow has produced real incidents. Tokens leaked through online JWT decoders. Internal API endpoints exposed via JSON formatters whose operators got curious. Production credentials hashed at sites whose database later leaked. The fix is not better operational discipline — engineers have other things to think about. The fix is to use tools that <em>can&apos;t</em> log your input because they don&apos;t have a server.
+    </p>
+    <p>
+      Pickrack&apos;s six developer tools all run <strong>entirely in your browser</strong>. JSON formatting is a <code>JSON.parse</code> + <code>JSON.stringify</code> in JavaScript. Base64 encoding is the native <code>btoa</code>/<code>atob</code> with a TextEncoder fallback for full UTF-8 (Vietnamese, emoji). JWT decoding is a Base64URL split into header/payload/signature, decoded into JSON. Hash generation uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto" target="_blank" rel="noopener noreferrer">Web Crypto API</a> (built into the browser, FIPS-validated implementation). UUIDs use <code>crypto.randomUUID</code>. Regex testing uses the native JavaScript regex engine. None of this code makes a network request. You can verify with DevTools → Network.
+    </p>
+    <h2>The six developer tools and what they replace</h2>
+    <ul>
+      <li><strong><a href="/tools/dev/json-formatter/">JSON Formatter</a></strong> — replaces JSONFormatter.org, JSON Editor Online. Formats with 2-space or 4-space indent, validates syntax, shows error position on invalid input.</li>
+      <li><strong><a href="/tools/dev/base64-encoder/">Base64 Encoder/Decoder</a></strong> — replaces Base64Decode.org. Full UTF-8 support (Vietnamese, Chinese, emoji) which most simple <code>btoa</code> wrappers break.</li>
+      <li><strong><a href="/tools/dev/jwt-decoder/">JWT Decoder</a></strong> — replaces jwt.io. Decodes header + payload, shows expiration as a human-readable date, signature verification on the roadmap.</li>
+      <li><strong><a href="/tools/dev/hash-generator/">Hash Generator</a></strong> — replaces miscellaneous hash tools. MD5 (legacy compat only), SHA-1 (Git compat), SHA-256, SHA-512. Note: do not use plain hashes for password storage — use bcrypt, scrypt, or Argon2.</li>
+      <li><strong><a href="/tools/dev/uuid-generator/">UUID Generator</a></strong> — replaces uuidgenerator.net. Generates 1-1000 v4 UUIDs at once. Compatible with PostgreSQL <code>uuid</code> type.</li>
+      <li><strong><a href="/tools/dev/regex-tester/">Regex Tester</a></strong> — replaces regex101 for quick checks. Live match highlighting, capture group display, six common presets (email, URL, phone, ISO date, IPv4, hex color).</li>
+    </ul>
+    <h2>What we don&apos;t replace (and shouldn&apos;t)</h2>
+    <p>
+      Pickrack&apos;s dev tools are <em>complementary</em> to your main toolchain, not a replacement. For complex regex work, <a href="https://regex101.com" target="_blank" rel="noopener noreferrer">regex101</a> is still better — it has explanation mode, multiple flavors (Python, PHP, JavaScript), and is the de facto standard. For deeply nested JSON exploration, <code>jq</code> on the command line or VS Code&apos;s JSON tree view is more efficient. For full JWT signature verification with public keys, <a href="https://github.com/panva/jose" target="_blank" rel="noopener noreferrer">the <code>jose</code> npm library</a> is the right choice. Pickrack is the &quot;quick check before going back to my real workflow&quot; layer.
+    </p>
+  </>
+);
+
 export default function DevHubPage() {
-  return <CategoryHub categoryId="dev" faq={FAQ} />;
+  return <CategoryHub categoryId="dev" intro={intro} faq={FAQ} />;
 }

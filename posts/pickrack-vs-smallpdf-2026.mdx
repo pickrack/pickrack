@@ -1,10 +1,10 @@
 ---
 title: "Pickrack vs Smallpdf 2026: Free Tier, Privacy, and Real Limits Compared"
 description: "Smallpdf caps free users at 2 tasks per day and starts at $9/month for Pro. Pickrack has no daily quota and most tools never upload. Here's the honest comparison."
-date: "2026-05-04"
+date: "2026-04-28"
 dateModified: "2026-05-04"
 tags: ["pdf", "comparison"]
-author: "Pick Rack"
+author: "David Pham"
 faq:
   - q: "Is Smallpdf actually free?"
     a: "Smallpdf has a free tier limited to 2 tasks per day with all PDF tools. After 2 tasks, you must wait 24 hours or upgrade to Pro at $9 per month. Free output also includes a tiny Smallpdf watermark on some tools as of May 2026."
@@ -27,6 +27,13 @@ faq:
 You're trying to merge three PDFs and Smallpdf tells you "you've used your 2 free tasks today, upgrade to Pro for $9/month." This article is for anyone deciding whether that $9 is worth it, or whether the free alternatives can match the experience.
 
 I've used both for the past 6 months. Here's the honest comparison.
+
+<Figure
+  src="/blog-screenshots/pickrack-vs-smallpdf/smallpdf-quota-hit.svg"
+  alt="Smallpdf free-tier quota error message after 2 daily tasks"
+  caption="The 2-task daily wall is the moment that pushes most casual users to consider alternatives — or to pay $9/month."
+  pending
+/>
 
 ## TL;DR
 
@@ -65,11 +72,25 @@ If any of these matter for your workflow, Smallpdf Pro at $9/month may be the ri
 
 **2. Browser-side privacy.** Smallpdf uploads every file to their servers, processes, and (per their policy) deletes after a few hours. You take this on faith. Pickrack's 32 browser-side tools never upload — verifiable in DevTools → Network. For sensitive documents (legal, medical, financial), this matters.
 
+<Figure
+  src="/blog-screenshots/pickrack-vs-smallpdf/pickrack-devtools-no-upload.svg"
+  alt="Chrome DevTools Network tab during Pickrack Merge PDF showing zero upload requests"
+  caption="Run Pickrack Merge PDF with DevTools open: the Network panel records zero outbound requests for the file. The merge happens entirely in browser memory via pdf-lib."
+  pending
+/>
+
 **3. Open source.** Pickrack's code is public at [github.com/pickrack/pickrack](https://github.com/pickrack/pickrack). You can read exactly what happens to your file. Smallpdf is closed-source.
 
 **4. More than PDF.** Pickrack has 21 non-PDF tools (image compress, background remover, JSON formatter, password generator, AI summarizer, AI translator). Smallpdf is PDF-only. If your daily workflow includes image and dev tools, Pickrack consolidates 3-5 separate tabs into one bookmark.
 
 **5. No watermark on free output.** Some Smallpdf free-tier tools add a tiny watermark; all Pickrack output is watermark-free.
+
+<Figure
+  src="/blog-screenshots/pickrack-vs-smallpdf/smallpdf-watermark.svg"
+  alt="Smallpdf watermark on free-tier compressed PDF output"
+  caption="Small but unmistakable: the free-tier mark on the bottom-right of a compressed Smallpdf output."
+  pending
+/>
 
 **6. AI tools at no extra cost.** Pickrack includes free AI summarizer, translator, and grammar checker (10 requests/day each). Smallpdf has [Ai PDF](https://www.smallpdf.com/ai-pdf) but it requires a Pro subscription to use beyond a 3-question demo.
 
@@ -112,6 +133,13 @@ Smallpdf only. **Smallpdf wins.**
 Smallpdf only. **Smallpdf wins.**
 
 ## Pricing math: when does Smallpdf Pro pay off?
+
+<Figure
+  src="/blog-screenshots/pickrack-vs-smallpdf/smallpdf-pricing.svg"
+  alt="Smallpdf Pro pricing page showing $9 per month billed annually"
+  caption="Smallpdf Pro is $9/month billed annually as of May 2026 — $108/year. Monthly billing is higher."
+  pending
+/>
 
 Smallpdf Pro is $9/month, $108/year. To justify that, you need at least one of:
 

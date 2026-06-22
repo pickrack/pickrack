@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { buildToolMetadata } from "@/lib/tool-seo";
-import ToolLayoutShell from "@/components/ToolLayoutShell";
+import ToolLayoutWrapper from "@/components/ToolLayoutWrapper";
 
 const SLUG = "jwt-decoder";
 
 export const metadata: Metadata = buildToolMetadata(SLUG) ?? {};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <ToolLayoutShell slug={SLUG}>{children}</ToolLayoutShell>;
+  return <ToolLayoutWrapper slug={SLUG}>{children}</ToolLayoutWrapper>;
 }

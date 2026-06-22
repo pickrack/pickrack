@@ -441,13 +441,44 @@ export const toolSEOMap: Record<string, ToolSEO> = {
   "qr-generator": {
     slug: "qr-generator",
     name: "QR Code Generator",
-    title: "QR Code Generator Online — Free, Custom Size, Download PNG/SVG",
+    title: "Free QR Code Generator — Custom Logo, Gradient, Crypto + VietQR",
     description:
-      "Generate QR codes for URLs, text, WiFi credentials, and vCards. Adjustable size and error correction. Download as PNG or SVG. Free, no signup.",
+      "Free QR codes for URL, WiFi, vCard, email, Bitcoin, Ethereum, PayPal, VietQR + 2 more. Custom shapes, gradient, logo, scan-me frame. PNG or SVG. No tracker.",
     keywords: [
-      "qr code generator", "free qr generator", "qr code maker",
-      "qr generator online", "qr code creator", "url to qr code",
-      "wifi qr code", "qr code download", "qr code no signup",
+      "qr code generator", "free qr code generator", "qr generator online",
+      "qr code maker", "custom qr code", "qr code with logo",
+      "qr code logo free", "gradient qr code", "qr code rounded dots",
+      "qr code eye shape", "qr code frame", "scan me qr code",
+      "wifi qr code", "sms qr code", "phone qr code",
+      "geo location qr code", "calendar event qr code",
+      "qr code no signup", "qr code no tracker", "qr code unlimited free",
+    ],
+  },
+  "qr-scanner": {
+    slug: "qr-scanner",
+    name: "QR Code Scanner",
+    title: "Free QR Code Scanner — Decode from Image or Camera",
+    description:
+      "Decode QR codes from an image upload or live camera. Detects URL, WiFi, vCard, email, phone, SMS, location, calendar event. Browser-side, no upload, no tracker.",
+    keywords: [
+      "qr code scanner", "free qr scanner", "qr code reader",
+      "qr scanner online", "scan qr from image", "qr code decoder",
+      "qr reader online", "scan qr camera", "qr scanner no app",
+      "read wifi qr code", "decode vcard qr", "scan qr from photo",
+      "qr code scanner web", "browser qr scanner",
+    ],
+  },
+  "qr-batch": {
+    slug: "qr-batch",
+    name: "Bulk QR Code Generator",
+    title: "Free Bulk QR Code Generator — CSV to ZIP, 500 QRs at Once",
+    description:
+      "Generate up to 500 QR codes from a CSV in one click. Download as a ZIP of PNG / SVG files. Browser-side batch, no upload, no signup, no daily quota.",
+    keywords: [
+      "bulk qr code generator", "csv to qr code", "batch qr generator",
+      "mass qr code maker", "qr code generator csv", "multiple qr codes at once",
+      "qr code zip download", "free bulk qr", "qr code batch online",
+      "generate many qr codes", "qr code list", "bulk qr no signup",
     ],
   },
   "age-calculator": {
@@ -472,6 +503,487 @@ export const toolSEOMap: Record<string, ToolSEO> = {
       "password generator", "strong password generator", "random password generator",
       "secure password generator", "free password generator", "password creator",
       "password generator online", "password generator no signup",
+    ],
+  },
+  "tip-calculator": {
+    slug: "tip-calculator",
+    name: "Tip Calculator",
+    title: "Tip Calculator — Split Bill, Add Tip, Round Up (7 Currencies)",
+    description:
+      "Free tip calculator with bill split, preset and slider tip percentages, round-up, and 7 currencies (USD, EUR, GBP, VND, JPY, AUD, CAD). Browser-side, no signup.",
+    keywords: [
+      "tip calculator", "split bill calculator", "restaurant tip calculator",
+      "bill split tool", "free tip calculator", "tip calculator with split",
+      "tip percentage calculator", "group bill calculator", "round up bill",
+      "tip calculator online",
+    ],
+  },
+  "bmi-calculator": {
+    slug: "bmi-calculator",
+    name: "BMI Calculator",
+    title: "BMI Calculator — Metric & Imperial, Healthy Range Estimate",
+    description:
+      "Free BMI calculator with metric (cm/kg) and imperial (ft+in/lb) units. Shows category (underweight, healthy, overweight, obese) plus the healthy weight range for your height. Browser-side.",
+    keywords: [
+      "bmi calculator", "body mass index calculator", "bmi calculator metric",
+      "bmi calculator imperial", "healthy weight calculator", "bmi free",
+      "bmi calculator online", "bmi range calculator", "weight range bmi",
+      "bmi tool",
+    ],
+  },
+  "currency-converter": {
+    slug: "currency-converter",
+    name: "Currency Converter",
+    title: "Currency Converter — Live Rates, 28 Currencies, Free",
+    description:
+      "Convert between 28 major currencies with live mid-market rates from exchangerate-api.com. Cached locally for an hour, browser-side, no signup, no upsell.",
+    keywords: [
+      "currency converter", "live currency rates", "exchange rate calculator",
+      "free currency converter", "usd to vnd", "eur to usd",
+      "currency converter online", "mid market rates", "currency exchange tool",
+      "fx converter",
+    ],
+  },
+  "mortgage-calculator": {
+    slug: "mortgage-calculator",
+    name: "Mortgage Calculator",
+    title: "Free Mortgage Calculator — Monthly Payment + Amortization Schedule",
+    description:
+      "Calculate monthly mortgage payment (P&I), total interest, and full amortization schedule. Includes extra-payment what-if analysis. Free, browser-side, no signup.",
+    keywords: [
+      "mortgage calculator", "free mortgage calculator", "monthly mortgage payment",
+      "home loan calculator", "amortization schedule", "mortgage amortization calculator",
+      "extra payment calculator", "mortgage payoff calculator", "loan calculator",
+      "30 year mortgage calculator", "interest calculator", "P&I calculator",
+    ],
+  },
+  "percentage-calculator": {
+    slug: "percentage-calculator",
+    name: "Percentage Calculator",
+    title: "Free Percentage Calculator — 5 Modes, Live Result, No Signup",
+    description:
+      "Calculate X% of Y, X is what % of Y, % change, % increase or decrease — all five common operations in one tool. Live result as you type. Free, browser-side.",
+    keywords: [
+      "percentage calculator", "free percentage calculator", "percent calculator",
+      "percent change calculator", "percent increase calculator", "percent decrease calculator",
+      "what percent of x is y", "percentage difference", "discount calculator",
+      "markup calculator", "tip percentage", "ratio to percentage",
+    ],
+  },
+  "random-picker": {
+    slug: "random-picker",
+    name: "Random Picker",
+    title: "Free Random Picker / Name Draw — Crypto-Secure, No Bias",
+    description:
+      "Paste a list, pick N at random. Cryptographically secure RNG via crypto.getRandomValues. With or without replacement. Animated reveal. Free, browser-side, no signup.",
+    keywords: [
+      "random picker", "random name picker", "free random picker",
+      "name draw tool", "raffle picker", "random name generator",
+      "pick from list", "random selection tool", "random winner picker",
+      "crypto secure random", "name wheel alternative", "decision maker",
+    ],
+  },
+  "pomodoro-timer": {
+    slug: "pomodoro-timer",
+    name: "Pomodoro Timer",
+    title: "Free Pomodoro Timer Online — 25/5 Cycles, Browser Tab Countdown",
+    description:
+      "25-minute focus + 5-minute break loops with a long break every 4 cycles. Customizable durations, browser notifications, tab title countdown. Free, no signup.",
+    keywords: [
+      "pomodoro timer", "free pomodoro timer", "online pomodoro timer",
+      "25 minute timer", "study timer", "productivity timer",
+      "focus timer", "pomodoro technique", "tomato timer",
+      "pomodoro app free", "browser pomodoro", "pomodoro no signup",
+    ],
+  },
+  "contrast-checker": {
+    slug: "contrast-checker",
+    name: "WCAG Contrast Checker",
+    title: "Free WCAG Contrast Checker — AA / AAA Rating + Sample Preview",
+    description:
+      "Check foreground/background color contrast for WCAG AA (4.5:1) and AAA (7:1) compliance. Sample text preview at 5 sizes. Free, browser-side, accessibility audit-ready.",
+    keywords: [
+      "contrast checker", "wcag contrast checker", "color contrast checker",
+      "accessibility contrast tool", "aa contrast", "aaa contrast",
+      "wcag color checker", "free contrast checker", "a11y contrast",
+      "color accessibility tool", "wcag 2.1 contrast", "contrast ratio calculator",
+    ],
+  },
+  "image-cropper": {
+    slug: "image-cropper",
+    name: "Image Cropper",
+    title: "Image Cropper Online — Free, Preset Ratios, No Upload",
+    description:
+      "Crop images with preset aspect ratios (1:1, 4:3, 16:9, 9:16, 3:2) or freeform drag handles. Browser-side, no upload, instant export to PNG or JPG. Free, no signup.",
+    keywords: [
+      "image cropper", "crop image online", "free image cropper",
+      "aspect ratio cropper", "instagram crop tool", "square photo crop",
+      "image crop no upload", "crop jpg online", "crop png online",
+      "image cropper free",
+    ],
+  },
+  "image-upscaler": {
+    slug: "image-upscaler",
+    name: "Image Upscaler",
+    title: "Image Upscaler Online — 2×, 3×, 4× Enlargement Free",
+    description:
+      "Enlarge images 2×, 3×, or 4× with smooth stepped bicubic resampling. Browser-side, no upload, no signup. Best for moderate enlargements of clean source images. Free.",
+    keywords: [
+      "image upscaler", "enlarge image online", "image enlarger",
+      "upscale image free", "image upscale 4x", "image resize larger",
+      "image upscaler no signup", "enlarge photo online", "image upscaler free",
+      "browser image upscaler",
+    ],
+  },
+  "color-palette": {
+    slug: "color-palette",
+    name: "Color Palette Extractor",
+    title: "Color Palette Extractor — Dominant Colors from Image, Free",
+    description:
+      "Extract dominant colors from any image using median-cut quantization. Output as hex, RGB, or CSS array. Adjustable 3-12 swatches. Browser-side, no upload, free.",
+    keywords: [
+      "color palette extractor", "image color palette", "extract colors from image",
+      "dominant color generator", "color picker from image", "palette generator",
+      "image to palette", "css color palette", "image colors",
+      "color extractor online",
+    ],
+  },
+  "svg-optimizer": {
+    slug: "svg-optimizer",
+    name: "SVG Optimizer",
+    title: "Free SVG Optimizer — Strip Comments, Round Decimals, Shorten Colors",
+    description:
+      "Optimize SVG markup: strip comments/metadata/whitespace, round path decimals, shorten color codes, remove default attributes. Live preview, size diff. Browser-side, free.",
+    keywords: [
+      "svg optimizer", "svg minifier", "free svg optimizer",
+      "svg compressor", "svgo online", "minify svg",
+      "svg cleaner", "remove inkscape metadata", "shrink svg",
+      "svg reduce size", "svg optimization tool", "browser svg optimizer",
+    ],
+  },
+  "image-watermark": {
+    slug: "image-watermark",
+    name: "Image Watermark",
+    title: "Free Image Watermark — Text or Logo, 6 Positions, No Upload",
+    description:
+      "Add text or image watermark to a photo. 6 position presets (corners, center, tiled), opacity + rotation sliders. Canvas API browser-side, no upload.",
+    keywords: [
+      "image watermark", "watermark photo", "add watermark to image",
+      "free watermark tool", "logo on photo", "copyright watermark",
+      "watermark generator", "no upload watermark", "tile watermark",
+      "diagonal watermark", "transparent watermark", "image watermark online",
+    ],
+  },
+  "favicon-generator": {
+    slug: "favicon-generator",
+    name: "Favicon Generator",
+    title: "Free Favicon Generator — 12 Sizes + ICO + Manifest + HTML Snippet",
+    description:
+      "Upload 1 image → favicon pack ZIP: 12 PNG sizes (16-512), favicon.ico multi-size, apple-touch-icon, site.webmanifest, HTML snippet. Browser-side, free.",
+    keywords: [
+      "favicon generator", "free favicon generator", "favicon maker",
+      "ico generator", "favicon from image", "apple touch icon generator",
+      "pwa manifest generator", "favicon pack", "browser favicon tool",
+      "16x16 favicon", "32x32 favicon", "favicon multi size",
+    ],
+  },
+  "gif-maker": {
+    slug: "gif-maker",
+    name: "GIF Maker",
+    title: "Free GIF Maker — Images to Animated GIF, Drag to Reorder, Loop",
+    description:
+      "Combine multiple images into an animated GIF. Drag to reorder frames, set delay + loop count, resize. Browser-side via gif.js Web Worker. No upload, free.",
+    keywords: [
+      "gif maker", "free gif maker", "images to gif",
+      "animated gif generator", "gif creator online", "frame to gif",
+      "gif from photos", "create animated gif", "gif maker no signup",
+      "gif maker browser", "online gif converter", "build gif",
+    ],
+  },
+  "exif-reader": {
+    slug: "exif-reader",
+    name: "EXIF Reader & Stripper",
+    title: "Free EXIF Viewer & Stripper — Camera, GPS, Privacy Cleanup",
+    description:
+      "Read camera EXIF + GPS metadata from photos. Strip metadata before sharing for privacy (location, camera serial, software fingerprint). Browser-side, free.",
+    keywords: [
+      "exif viewer", "exif reader", "exif stripper",
+      "remove exif", "photo metadata reader", "gps from photo",
+      "strip image metadata", "exif privacy tool", "camera exif",
+      "free exif viewer", "browser exif tool", "metadata remover photo",
+    ],
+  },
+  "youtube-summarizer": {
+    slug: "youtube-summarizer",
+    name: "YouTube Video Summarizer",
+    title: "YouTube Summarizer — AI Video Summary from URL, Free",
+    description:
+      "Paste a YouTube URL and get a Claude Haiku 4.5 summary of the video transcript. Short, medium, or bullet-structured output. Free, no signup, daily free quota of 10.",
+    keywords: [
+      "youtube summarizer", "youtube video summarizer", "youtube to summary",
+      "ai youtube summary", "claude youtube summarizer", "video summary tool",
+      "summarize youtube video", "free youtube summarizer", "youtube transcript summary",
+      "youtube summarizer no signup",
+    ],
+  },
+  "chat-with-pdf": {
+    slug: "chat-with-pdf",
+    name: "Chat with PDF",
+    title: "Chat with PDF — Ask Questions, Get Claude Answers, Free",
+    description:
+      "Ask questions about a PDF and get answers from Claude. PDF parsed in your browser — only the extracted text reaches our server. Free, no signup, daily quota of 30 chat turns.",
+    keywords: [
+      "chat with pdf", "pdf chat ai", "ask pdf questions", "pdf q&a tool",
+      "claude pdf chat", "free pdf chat", "pdf chatbot", "talk to pdf",
+      "chat with document", "ai pdf reader",
+    ],
+  },
+  "translate-document": {
+    slug: "translate-document",
+    name: "Translate Document",
+    title: "Translate Document — 20 Languages, Preserve Formatting, Free",
+    description:
+      "Translate text, markdown, HTML, CSV, JSON, or PDF documents into 20 languages while preserving formatting. Powered by Claude Haiku 4.5. Free, daily quota of 5.",
+    keywords: [
+      "translate document", "ai document translator", "pdf translator ai",
+      "markdown translator", "html translator", "translate preserve format",
+      "claude document translator", "free document translation",
+      "translate document online", "ai translate docx",
+    ],
+  },
+  "qr-art-generator": {
+    slug: "qr-art-generator",
+    name: "AI-Art QR Generator",
+    title: "AI-Art QR Code Generator — Stable Diffusion + ControlNet",
+    description:
+      "Generate a scannable QR code blended into a Stable Diffusion artwork. ControlNet QR-monster model on self-hosted GPU. Scan-verified output.",
+    keywords: [
+      "ai qr code", "ai art qr", "stable diffusion qr code",
+      "controlnet qr code", "qr code monster", "artistic qr code",
+      "qr art generator", "ai generated qr", "qr code with art",
+      "stable diffusion qr generator", "qr code illusion", "ai stylized qr",
+    ],
+  },
+  "ai-image-upscaler": {
+    slug: "ai-image-upscaler",
+    name: "AI Image Upscaler",
+    title: "Free AI Image Upscaler — Swin2SR Transformer 4× Detail Enhancement",
+    description:
+      "Upscale images 2× or 4× using the Swin2SR transformer (better than bicubic for photos). Detail enhancement built-in. Self-hosted GPU, free, no signup.",
+    keywords: [
+      "ai image upscaler", "free image upscaler", "swin2sr upscaler",
+      "image 4x upscale", "ai photo enhancer", "upscale image online",
+      "neural upscaler", "ai photo upscale", "free photo enhancer",
+      "image super resolution", "transformer upscaler", "browser ai upscaler",
+    ],
+  },
+  "ai-img2img": {
+    slug: "ai-img2img",
+    name: "AI Image Stylizer",
+    title: "Free AI Image Stylizer — Stable Diffusion Img2Img, 4 Models",
+    description:
+      "Re-paint any photo in a new style: oil painting, watercolor, anime, cyberpunk, Ghibli. SD img2img with 4 model picker + strength slider. Self-hosted GPU, free.",
+    keywords: [
+      "ai image stylizer", "free img2img", "stable diffusion img2img",
+      "photo to oil painting", "photo to anime", "ai style transfer",
+      "ai photo art", "img to img free", "stable diffusion online",
+      "photo to watercolor ai", "cyberpunk photo filter", "ghibli photo ai",
+    ],
+  },
+  "screenshot-to-pdf": {
+    slug: "screenshot-to-pdf",
+    name: "Screenshot to PDF",
+    title: "Screenshot to PDF — Paste & Combine into PDF, Free, No Upload",
+    description:
+      "Paste screenshots with Ctrl/Cmd+V and combine into a single PDF. Drag to reorder, fit-to-image or A4 pages. Browser-side via pdf-lib, free, no signup, no watermark.",
+    keywords: [
+      "screenshot to pdf", "paste screenshot to pdf", "combine screenshots pdf",
+      "screenshots to single pdf", "clipboard to pdf", "screenshot pdf maker",
+      "merge screenshots pdf", "free screenshot to pdf", "screenshot to pdf no upload",
+      "ctrl v screenshot pdf",
+    ],
+  },
+  "markdown-to-html": {
+    slug: "markdown-to-html",
+    name: "Markdown to HTML",
+    title: "Markdown to HTML — GFM Live Preview, Copy or Download Free",
+    description:
+      "Convert Markdown to clean HTML with GitHub-Flavored extensions (tables, task lists, strikethrough). Live preview, copy HTML, download .html. Browser-side, free.",
+    keywords: [
+      "markdown to html", "md to html converter", "markdown converter",
+      "gfm to html", "markdown preview", "markdown to html online",
+      "convert markdown html", "markdown editor free", "markdown export html",
+      "markdown to html no signup",
+    ],
+  },
+  "find-replace": {
+    slug: "find-replace",
+    name: "Find & Replace",
+    title: "Free Find & Replace Online — Regex, Capture Groups, Live Preview",
+    description:
+      "Find and replace text with full regex support, capture groups ($1 $2), case-insensitive, multiline modes. Live preview, match count. Browser-side, free.",
+    keywords: [
+      "find and replace", "find replace online", "regex find replace",
+      "text find replace", "free find replace tool", "replace string online",
+      "regex replace online", "find and replace regex", "string substitution tool",
+      "bulk find replace", "find replace text",
+    ],
+  },
+  "sort-lines": {
+    slug: "sort-lines",
+    name: "Sort Lines",
+    title: "Free Sort Lines Online — Alpha, Numeric, Length, Natural + Shuffle",
+    description:
+      "Sort text lines: alphabetical, numerical, by length, natural (file1, file2, file10), reverse, or shuffle. Optional dedup + blank filter. Browser-side, free.",
+    keywords: [
+      "sort lines", "sort lines online", "sort text alphabetically",
+      "free sort lines tool", "alphabetize lines", "sort by length",
+      "natural sort online", "shuffle lines", "sort lines reverse",
+      "sort and dedupe", "alphabetical sort tool",
+    ],
+  },
+  "remove-duplicates": {
+    slug: "remove-duplicates",
+    name: "Remove Duplicate Lines",
+    title: "Free Remove Duplicate Lines — Preserve Order, Case-Sensitive Toggle",
+    description:
+      "Dedupe text lines while preserving original order. Case-sensitive or insensitive, whitespace trimming, keep-first vs keep-last. Browser-side, free.",
+    keywords: [
+      "remove duplicate lines", "deduplicate text", "remove duplicates online",
+      "delete duplicate lines", "unique lines tool", "free dedup tool",
+      "remove duplicate rows", "deduplicate list online", "unique entries tool",
+      "duplicate line remover", "line dedupe",
+    ],
+  },
+  "word-frequency": {
+    slug: "word-frequency",
+    name: "Word Frequency Counter",
+    title: "Free Word Frequency Counter — Top N, Stopwords Filter, CSV Export",
+    description:
+      "Count word, character, or line occurrences in any text. Sorted top N, filter by min length, drop English stopwords. Export CSV. Browser-side, free.",
+    keywords: [
+      "word frequency counter", "word count tool", "word frequency analyzer",
+      "free word frequency", "text frequency analysis", "word occurrence counter",
+      "most common words tool", "word frequency csv", "term frequency tool",
+      "word frequency online", "n-gram free",
+    ],
+  },
+  "line-numberer": {
+    slug: "line-numberer",
+    name: "Line Numberer",
+    title: "Free Line Numberer / Prefix Adder — 12 Presets + Custom Template",
+    description:
+      "Add numbers, bullets, or custom prefix to each line. 12 presets (1., a., - bullet, [ ], > quote, ...) + template syntax with {n} {a} {r} variables. Free, browser-side.",
+    keywords: [
+      "line numberer", "add line numbers", "number lines online",
+      "add prefix to lines", "free line numberer", "add bullet to lines",
+      "markdown list converter", "number text lines", "line prefix tool",
+      "indent text tool", "todo list generator",
+    ],
+  },
+  "timestamp-converter": {
+    slug: "timestamp-converter",
+    name: "Timestamp Converter",
+    title: "Unix Timestamp Converter — ISO 8601, Timezone-Aware, Free",
+    description:
+      "Convert between Unix timestamp (seconds or ms), ISO 8601, and human-readable dates across timezones. Live preview, copy any format. Browser-side, free.",
+    keywords: [
+      "unix timestamp converter", "epoch converter", "timestamp to date",
+      "date to timestamp", "iso 8601 converter", "unix time converter",
+      "epoch to human readable", "timezone converter timestamp",
+      "milliseconds timestamp converter", "free timestamp tool",
+    ],
+  },
+  "diff-checker": {
+    slug: "diff-checker",
+    name: "Text Diff Checker",
+    title: "Text Diff Checker — Compare Two Texts Online, Free, No Upload",
+    description:
+      "Compare two text blocks line-by-line with LCS algorithm. Color-coded additions, deletions, unchanged. Ignore whitespace or case. Browser-side, free.",
+    keywords: [
+      "text diff checker", "compare text online", "diff tool",
+      "text comparison tool", "online diff checker", "compare two texts",
+      "find differences text", "diff viewer", "text diff online free",
+      "side by side diff",
+    ],
+  },
+  "gradient-generator": {
+    slug: "gradient-generator",
+    name: "CSS Gradient Generator",
+    title: "CSS Gradient Generator — Linear, Radial, Conic, Multi-Stop",
+    description:
+      "Build linear, radial, or conic CSS gradients with live preview. Multi-color stops, angle slider, presets, Tailwind v4-ready arbitrary value output. Free.",
+    keywords: [
+      "css gradient generator", "linear gradient generator", "radial gradient generator",
+      "conic gradient generator", "gradient maker", "css gradient builder",
+      "tailwind gradient generator", "free gradient generator",
+      "color gradient css", "background gradient generator",
+    ],
+  },
+  "color-converter": {
+    slug: "color-converter",
+    name: "Color Converter",
+    title: "Free Color Converter — HEX, RGB, HSL, HSV + WCAG Contrast",
+    description:
+      "Convert colors between HEX, RGB, HSL, and HSV with live preview. Built-in WCAG contrast check vs white and black for accessibility. Free, browser-side.",
+    keywords: [
+      "color converter", "hex to rgb", "rgb to hex", "hex to hsl",
+      "rgb to hsl", "hsl to rgb", "hsv to rgb", "color picker online",
+      "wcag contrast checker", "color contrast tool", "free color converter",
+      "color code converter", "color converter online",
+    ],
+  },
+  "url-encoder": {
+    slug: "url-encoder",
+    name: "URL Encoder / Decoder",
+    title: "Free URL Encoder & Decoder — encodeURIComponent + encodeURI",
+    description:
+      "Percent-encode URL parameters or decode them. Toggle between encodeURIComponent (full) and encodeURI (URL-safe). Free, browser-side, instant.",
+    keywords: [
+      "url encoder", "url decoder", "percent encoding tool",
+      "encodeuricomponent online", "encodeuri online", "url decode online",
+      "url encode online", "free url encoder",
+      "uri encoder", "uri decoder", "url escape tool",
+    ],
+  },
+  "html-entity-encoder": {
+    slug: "html-entity-encoder",
+    name: "HTML Entity Encoder / Decoder",
+    title: "Free HTML Entity Encoder & Decoder — Named, Numeric, All",
+    description:
+      "Escape HTML special chars (& < > \" ') to named (&amp;) or numeric (&#38;) entities, or decode entity strings back. Free, browser-side, instant.",
+    keywords: [
+      "html entity encoder", "html entity decoder", "html escape tool",
+      "html unescape", "ampersand encoder", "named entity encoder",
+      "html special characters", "xss escape tool", "html encode online",
+      "free html entity encoder", "html decode online",
+    ],
+  },
+  "sql-formatter": {
+    slug: "sql-formatter",
+    name: "SQL Formatter",
+    title: "Free SQL Formatter — MySQL, PostgreSQL, SQLite, BigQuery + 7 More",
+    description:
+      "Pretty-print SQL across 11 dialects (MySQL, PostgreSQL, SQLite, MS SQL, BigQuery, Snowflake, Redshift, Oracle, Spark...). Indent + keyword case options. Browser-side.",
+    keywords: [
+      "sql formatter", "sql beautifier", "sql pretty print",
+      "mysql formatter", "postgresql formatter", "sqlite formatter",
+      "bigquery sql formatter", "snowflake sql formatter",
+      "online sql formatter", "free sql formatter",
+      "sql indent tool", "format sql query", "sql code formatter",
+    ],
+  },
+  "yaml-json-converter": {
+    slug: "yaml-json-converter",
+    name: "YAML to JSON Converter",
+    title: "Free YAML to JSON Converter — Bidirectional with Inline Errors",
+    description:
+      "Convert YAML to JSON or JSON to YAML with adjustable indent. Inline error reporting, browser-side parsing — no upload, no signup. Free.",
+    keywords: [
+      "yaml to json", "json to yaml", "yaml json converter",
+      "yaml parser online", "yaml validator", "convert yaml to json",
+      "yaml to json online", "free yaml converter", "json to yaml online",
+      "yaml editor", "yaml decoder",
     ],
   },
 };
@@ -544,4 +1056,18 @@ export function buildToolJsonLd(slug: string): {
   };
 
   return { softwareApp, breadcrumb };
+}
+
+export function getToolBreadcrumbItems(slug: string): Array<{ label: string; href?: string }> | null {
+  const seo = toolSEOMap[slug];
+  if (!seo) return null;
+  const tool = getTool(slug);
+  const category = tool ? getCategory(tool.category) : getCategory("pdf");
+
+  return [
+    { label: "Home", href: "/" },
+    { label: "Tools", href: "/tools/" },
+    { label: category.name, href: `/tools/${category.slug}/` },
+    { label: seo.name },
+  ];
 }

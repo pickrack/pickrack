@@ -1,7 +1,7 @@
 // Centralized policy metadata so update once, render in all pages.
 import { SITE_URL, SITE_NAME } from "@/lib/site-config";
 
-export const POLICY_LAST_UPDATED = "2026-04-28";
+export const POLICY_LAST_UPDATED = "2026-05-06";
 export const CONTACT_EMAIL = "hello@pickrack.com";
 
 export function buildWebPageJsonLd(slug: string, name: string, description: string) {

@@ -4,7 +4,7 @@
 
 [**Live demo → pickrack.com**](https://pickrack.com)
 
-56 free tools across 6 categories: PDF, Image, AI, Developer, Text, Calculators. No signup, no daily limit, no watermark. Server-side tools (compression, conversion, AI) are explicitly labeled and delete inputs immediately after the response.
+76 free tools across 6 categories: PDF, Image, AI, Developer, Text, Calculators. No signup, no daily limit, no watermark. Server-side tools (compression, conversion, AI) are explicitly labeled and delete inputs immediately after the response.
 
 ---
 
@@ -18,13 +18,13 @@ Most free online tools are bait-and-switch:
 - **remove.bg** gives **1 free image/month**, then charges $0.20/image.
 - **Adobe Acrobat Pro** is **$19.99/mo** ($239.88/year).
 
-Pickrack offers no daily quota, no watermark, no signup. Most tools (39 of 56) run entirely in your browser using Canvas, WebAssembly, or Web Crypto APIs — your files never upload. Server-side tools that need it (Ghostscript compression, LibreOffice conversion, Calibre EPUB, AI via Anthropic Claude, live FX rates) are clearly labeled and delete inputs immediately.
+Pickrack offers no daily quota, no watermark, no signup. Most tools (56 of 76) run entirely in your browser using Canvas, WebAssembly, or Web Crypto APIs — your files never upload. Server-side tools that need it (Ghostscript compression, LibreOffice conversion, Calibre EPUB, AI via Anthropic Claude, self-hosted GPU image generation/upscaling, live FX rates) are clearly labeled and delete inputs immediately.
 
 The site is sustained by display advertising and affiliate commissions on **unrelated** products (premium tools we test and recommend in our blog). Tool functionality is fully unrestricted.
 
 ---
 
-## Tools (56)
+## Tools (76)
 
 ### 📄 PDF (17, mixed browser + server)
 
@@ -32,17 +32,19 @@ The site is sustained by display advertising and affiliate commissions on **unre
 
 Engines: [pdf-lib](https://github.com/Hopding/pdf-lib) (browser), [qpdf](https://github.com/qpdf/qpdf) (server, AES-256), [Ghostscript](https://www.ghostscript.com) (compression), [pdftotext / pdftoppm](https://poppler.freedesktop.org) (Poppler), [LibreOffice](https://www.libreoffice.org) headless (Office formats), [Calibre ebook-convert](https://calibre-ebook.com) (EPUB), [pptxgenjs](https://github.com/gitbrent/PptxGenJS) (PDF→PPTX image-per-slide).
 
-### 🖼️ Image (8, all browser-side)
+### 🖼️ Image (13, all browser-side)
 
-`image-resizer` · `image-compressor` · `image-converter` · `image-cropper` · `image-upscaler` · `heic-to-jpg` · `background-remover` · `color-palette`
+`image-resizer` · `image-compressor` · `image-converter` · `image-cropper` · `image-upscaler` · `heic-to-jpg` · `background-remover` · `color-palette` · `exif-reader` · `favicon-generator` · `gif-maker` · `image-watermark` · `svg-optimizer`
 
 Engines: Canvas API for resize/compress/convert/crop/upscale, [heic2any](https://github.com/alexcorvi/heic2any) for HEIC, [@imgly/background-removal](https://github.com/imgly/background-removal-js) for AI background removal (~30MB ONNX model, downloaded once and cached), k-means clustering on Canvas pixel data for color-palette.
 
-### 🤖 AI (6, server-side via Anthropic Claude)
+### 🤖 AI (9, server-side)
 
-`ai-summarizer` · `ai-translator` · `ai-grammar-checker` · `translate-document` · `chat-with-pdf` · `youtube-summarizer`
+`ai-summarizer` · `ai-translator` · `ai-grammar-checker` · `translate-document` · `chat-with-pdf` · `youtube-summarizer` · `ai-image-upscaler` · `ai-img2img` · `qr-art-generator`
 
-Powered by Claude Haiku 4.5. Anthropic's commercial API agreement excludes API inputs from training. Pickrack does not log inputs or outputs. Free tier: 10 requests per IP per day (covers 99% of casual use). `chat-with-pdf` and `translate-document` extract text via Poppler/LibreOffice server-side, then chunk + stream through Claude. `youtube-summarizer` pulls the transcript from YouTube's caption track and summarizes the chunked output.
+The 6 text tools are powered by Claude Haiku 4.5. Anthropic's commercial API agreement excludes API inputs from training. Pickrack does not log inputs or outputs. Free tier: 10 requests per IP per day (covers 99% of casual use). `chat-with-pdf` and `translate-document` extract text via Poppler/LibreOffice server-side, then chunk + stream through Claude. `youtube-summarizer` pulls the transcript from YouTube's caption track and summarizes the chunked output.
+
+The 3 image tools (`ai-image-upscaler`, `ai-img2img`, `qr-art-generator`) call a **self-hosted GPU worker** (Stable Diffusion / Swin2SR) via the `QR_ART_LOCAL_URL` env var — see [Self-hosting](#self-hosting). Without it configured they return a clear "GPU worker offline" error; the rest of the site is unaffected.
 
 ### 💻 Developer (14, all browser-side)
 
@@ -50,13 +52,13 @@ Powered by Claude Haiku 4.5. Anthropic's commercial API agreement excludes API i
 
 Library engines: [sql-formatter](https://github.com/sql-formatter-org/sql-formatter) for SQL pretty-print, [js-yaml](https://github.com/nodeca/js-yaml) for YAML parse/serialize. All other dev tools are pure JavaScript / Web Crypto.
 
-### ✏️ Text (5, all browser-side)
+### ✏️ Text (10, all browser-side)
 
-`word-counter` · `case-converter` (9 variants) · `lorem-ipsum` · `slug-generator` (Vietnamese diacritic stripping) · `markdown-to-html` (live preview, GitHub-flavored, copy-as-HTML)
+`word-counter` · `case-converter` (9 variants) · `lorem-ipsum` · `slug-generator` (Vietnamese diacritic stripping) · `markdown-to-html` (live preview, GitHub-flavored, copy-as-HTML) · `find-replace` · `line-numberer` · `remove-duplicates` · `sort-lines` · `word-frequency`
 
-### 🧮 Calculators (6, 5 browser-side + 1 server-side)
+### 🧮 Calculators (13, 12 browser-side + 1 server-side)
 
-`password-generator` (crypto.getRandomValues, entropy meter) · `qr-generator` (URL/text/WiFi/vCard/email, PNG+SVG) · `age-calculator` (Y/M/D/h/m + leap-year handling) · `bmi-calculator` (metric + imperial, WHO categories) · `tip-calculator` (multi-person split, tax-inclusive) · `currency-converter` (live rates from exchangerate-api, server-side proxy to keep the API key out of the client)
+`password-generator` (crypto.getRandomValues, entropy meter) · `qr-generator` (URL/text/WiFi/vCard/email, PNG+SVG) · `age-calculator` (Y/M/D/h/m + leap-year handling) · `bmi-calculator` (metric + imperial, WHO categories) · `tip-calculator` (multi-person split, tax-inclusive) · `currency-converter` (live rates from exchangerate-api, server-side proxy to keep the API key out of the client) · `contrast-checker` · `mortgage-calculator` · `percentage-calculator` · `pomodoro-timer` · `qr-batch` · `qr-scanner` · `random-picker`
 
 ---
 
@@ -64,7 +66,7 @@ Library engines: [sql-formatter](https://github.com/sql-formatter-org/sql-format
 
 | Tool category | Where data is processed | Data retention |
 |---|---|---|
-| Browser-side (39 of 56) | Your browser only | Never sent anywhere |
+| Browser-side (56 of 76) | Your browser only | Never sent anywhere |
 | Server-side PDF (qpdf, gs, pdftotext, LibreOffice, Calibre) | Your file uploads to our server, processed in a temp dir, deleted immediately on response | Zero retention |
 | Server-side AI (Anthropic) | Your text sent to api.anthropic.com over HTTPS | Anthropic retains 30 days for abuse monitoring, then deletes; not used for training |
 | Server-side FX (exchangerate-api) | Only the currency codes are sent — no user data | None |
@@ -129,6 +131,19 @@ ebook-convert --version
 
 If these binaries are missing, the corresponding API routes return a clear error. Browser-side tools (most of pickrack) work without any system dependencies.
 
+### 3b. (Optional) Run the AI image GPU worker
+
+Three AI tools — `ai-image-upscaler`, `ai-img2img`, and `qr-art-generator` — call a self-hosted GPU worker (Stable Diffusion + Swin2SR) over HTTP. Point Pickrack at it by setting `QR_ART_LOCAL_URL` in your env (e.g. `QR_ART_LOCAL_URL=http://127.0.0.1:3021`). The worker must expose:
+
+| Endpoint | Used by |
+|---|---|
+| `GET /health` | readiness probe (all 3 tools) |
+| `POST /generate` | `qr-art-generator` |
+| `POST /upscale` | `ai-image-upscaler` |
+| `POST /img2img` | `ai-img2img` |
+
+Without `QR_ART_LOCAL_URL`, these 3 tools return a clear "GPU worker offline" error and the rest of the site is unaffected. (The Claude-backed AI text tools only need `ANTHROPIC_API_KEY`.)
+
 ### 4. Run
 
 ```bash
@@ -140,7 +155,7 @@ npm run build
 npm start
 ```
 
-The site runs on `localhost:3000` by default. For production, run behind a reverse proxy (nginx, Caddy, Cloudflare Tunnel) with HTTPS.
+The site runs on `localhost:3016` by default (set in `package.json`). For production, run behind a reverse proxy (nginx, Caddy, Cloudflare Tunnel) with HTTPS.
 
 ---
 
@@ -156,7 +171,7 @@ When we use server-side processing (PDF compression with Ghostscript, format con
 
 Premium tiers create incentive misalignment: free users get worse UX (watermarks, quotas, hidden upsells) so they upgrade. We sustain costs via display ads (auto-loading, never inside the tool itself) and affiliate commissions on premium tools we honestly review in our blog. If you'd like to support development, see "Sponsoring" below.
 
-### Why a single repo for 56 tools
+### Why a single repo for 76 tools
 
 Keeps the entire codebase auditable in one place. Each tool is roughly 200-400 lines of code under `app/tools/<category>/<slug>/`. Shared infrastructure (SEO, schema, layout) is in `lib/` and `components/`. Adding a new tool is ~3 files (page.tsx, layout.tsx, content + SEO entries).
 

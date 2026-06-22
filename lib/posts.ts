@@ -76,3 +76,19 @@ export function getPostBySlug(slug: string): Post | null {
 export function getPostsByTag(tag: string): PostMeta[] {
   return getAllPosts().filter((p) => p.tags.includes(tag));
 }
+
+export function getRelatedPosts(slug: string, limit: number = 3): PostMeta[] {
+  const post = getPostBySlug(slug);
+  if (!post || !post.tags || post.tags.length === 0) {
+    return getAllPosts().filter((p) => p.slug !== slug).slice(0, limit);
+  }
+
+  const allPosts = getAllPosts().filter((p) => p.slug !== slug);
+  const scored = allPosts.map((p) => {
+    const tagMatches = p.tags.filter((t) => post.tags.includes(t)).length;
+    return { post: p, score: tagMatches };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, limit).map((s) => s.post);
+}

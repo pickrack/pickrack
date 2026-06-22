@@ -1,10 +1,10 @@
 ---
 title: "Pickrack vs iLovePDF 2026: Free Tier Limits, Privacy, and Honest Comparison"
 description: "iLovePDF caps free users at 200MB per task and 30 conversions per day. Pickrack has no daily quota. Here's the side-by-side breakdown of when each makes sense."
-date: "2026-05-04"
+date: "2026-04-29"
 dateModified: "2026-05-04"
 tags: ["pdf", "comparison"]
-author: "Pick Rack"
+author: "David Pham"
 faq:
   - q: "What's iLovePDF's actual free tier limit?"
     a: "iLovePDF caps free users at approximately 200MB per task and limits to 30 conversions per day across most tools. Premium tier removes both limits at $9.99 per month, $79.99 per year."
@@ -25,6 +25,13 @@ faq:
 ---
 
 iLovePDF and Pickrack overlap on most basic PDF operations, but they have very different business models. iLovePDF is a venture-backed Spanish startup with a polished cloud product and Premium upgrade pressure. Pickrack is an indie open-source project optimized for privacy and zero quota. This article compares them feature-by-feature and helps you pick.
+
+<Figure
+  src="/blog-screenshots/pickrack-vs-ilovepdf/ilovepdf-quota-hit.svg"
+  alt="iLovePDF free-tier quota limit reached message"
+  caption="iLovePDF caps free users at roughly 30 conversions per day and 200 MB per task. Hit either and you see a soft paywall."
+  pending
+/>
 
 ## Quick comparison
 
@@ -90,12 +97,26 @@ iLovePDF and Pickrack overlap on most basic PDF operations, but they have very d
 
 - **Both work**. Pickrack uses LibreOffice; iLovePDF uses similar engine. Output quality comparable.
 
+<Figure
+  src="/blog-screenshots/pickrack-vs-ilovepdf/merge-side-by-side.svg"
+  alt="Side by side merge result: same 3 input PDFs merged by Pickrack and by iLovePDF"
+  caption="Same three input PDFs, same compression level — output PDFs are bit-for-bit different in metadata but visually identical. Both use pdf-lib-class engines."
+  pending
+/>
+
 ### Scenario 5: Add legally-binding e-signature to a contract
 
 - **iLovePDF Premium**: built-in eSign
 - **Pickrack**: not supported (use DocuSign or Smallpdf for this)
 
 ## Pricing math
+
+<Figure
+  src="/blog-screenshots/pickrack-vs-ilovepdf/ilovepdf-pricing.svg"
+  alt="iLovePDF Premium pricing page showing $9.99 per month or $79.99 per year"
+  caption="iLovePDF Premium pricing as captured on the date of writing. Annual save 16%."
+  pending
+/>
 
 iLovePDF Premium: $9.99/month, $79.99/year (16% off annual). Justified if:
 

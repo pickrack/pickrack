@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ToolContent } from "@/lib/tool-content";
 import { getTool } from "@/lib/tools";
+import { getCategory } from "@/lib/categories";
 
 function renderInline(text: string) {
   // Render simple markdown bold (**text**) and inline code (`text`)
@@ -32,7 +33,7 @@ export default function ToolContentSection({ content }: { content: ToolContent }
 
   return (
     <section className="border-t bg-gray-50" style={{ borderColor: "var(--color-border)" }}>
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="prose prose-lg max-w-none">
           <p className="text-lg text-gray-700 leading-relaxed not-prose mb-8">
             {renderInline(content.h1Subtitle)}
@@ -82,7 +83,7 @@ export default function ToolContentSection({ content }: { content: ToolContent }
                 {related.map((tool) => (
                   <Link
                     key={tool.slug}
-                    href={`/tools/pdf/${tool.slug}`}
+                    href={`/tools/${getCategory(tool.category).slug}/${tool.slug}/`}
                     className="block rounded-xl border bg-white p-4 hover:border-emerald-400 hover:shadow-sm transition"
                     style={{ borderColor: "var(--color-border)" }}
                   >

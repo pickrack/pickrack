@@ -1,47 +1,94 @@
 ---
-title: "Welcome to Pick Rack"
-description: "A new home for honest, no-fluff reviews of free AI, PDF, and developer tools — written by someone who actually uses them."
-date: "2026-04-28"
-tags: ["meta"]
-author: "Pick Rack"
+title: "Welcome to Pickrack: Why I Built 76 Free Tools That Don't Want Your Email"
+description: "An honest intro to Pickrack — what it is, why a solo dev built 76 free tools across PDF, image, AI, dev, text, and calc, and what makes it different from Smallpdf, iLovePDF, and the dozens of clones."
+date: "2026-04-20"
+dateModified: "2026-05-15"
+tags: ["meta", "about"]
+author: "David Pham"
 ---
 
-There are too many "best tools 2026" listicles written by people who never opened the apps they recommend.
+Every week I run into the same loop. I need a small tool — merge two PDFs, strip metadata from an image, decode a JWT — and the search results all look identical: "free", "online", "easy". I click. The site loads, I drop the file in, I click the button, and a popup tells me I need to sign up to download the result. Or there's a watermark. Or a daily limit of two files.
 
-**Pick Rack is the opposite of that.**
+That entire pattern is a tax on people who just need to get something done.
 
-I'm an indie maker who's tested, broken, and replaced hundreds of SaaS tools across years of side projects — paid and free, AI and classical, polished and janky. This site is where I share **what actually worked**.
+**Pickrack is my answer to that tax.** It's a single site with **76 tools across six categories** — PDF, image, AI, dev, text, and calc — that I personally use, and now you can too. No signup. No daily quota. No watermark. Most tools run entirely in your browser, so your files don't even leave your device.
 
-## What you'll find here
+This post is a longer "about" — what's on the site, why each design choice was made, and what's coming next.
 
-Three buckets, all free or generous-free-tier:
+## The 76 tools, briefly
 
-- **PDF tools** — converters, extractors, mergers, OCR. I cover what works, what doesn't, and when paid is worth it.
-- **AI tools** — the LLM, image, audio, and writing tools I keep going back to (and the ones that disappointed).
-- **Dev stack** — frameworks, deploy targets, monitoring, and the boring infra that actually matters for solo makers and small teams.
+### PDF (17 tools)
 
-## What you won't find
+The category that got me started. PDF is everywhere and everyone needs to do something to one occasionally. I built **merge, split, rotate, watermark, JPG↔PDF, screenshot→PDF, compress, unlock, password-protect, Word↔PDF, PPTX↔PDF, EPUB↔PDF, and PDF→Markdown**.
 
-- "Top 50 tools" articles. Nobody uses 50 tools.
-- Sponsored content disguised as reviews. (Affiliate links exist, always disclosed, never the reason for a recommendation.)
-- AI-generated filler. Each piece is written by a human who used the thing.
+Seven of these are 100% browser-side using [pdf-lib](https://github.com/Hopding/pdf-lib): merge, split, rotate, watermark, JPG→PDF, PDF→JPG, and screenshot→PDF. Your file is read into browser memory, processed in JavaScript, downloaded back. The server never sees it.
 
-## How this works
+The other ten need a server because they shell out to native binaries that have no browser equivalent: `qpdf` for unlock and AES-256 protection, Ghostscript for compression, LibreOffice headless for Word/PPTX, Calibre for EPUB, and a `pdftoppm` + `pptxgenjs` pipeline for PDF→PPTX (image-per-slide, the same approach Smallpdf and iLovePDF use). Server-side files are written to a temp directory and deleted immediately after the response. No DB, no logging, no storage.
 
-- **Free reading**, no paywall, no email gate
-- **Affiliate links** disclosed at the top of any post that has them
-- **Display ads** keep the lights on
-- **No newsletter** yet — when there's enough signal, I'll add one
+### Image (13 tools)
 
-## What I'm working on next
+**Image resizer, compressor, format converter (PNG↔JPG↔WebP↔AVIF), cropper, upscaler, HEIC→JPG, AI background remover, color-palette extractor, EXIF reader, favicon generator, GIF maker, image watermark, and SVG optimizer.** All thirteen run in your browser. The background remover uses `@imgly/background-removal`, an ONNX runtime WebAssembly model — the first conversion downloads about 30MB of model weights, then everything is cached and instant. HEIC conversion uses `heic2any`. Resizer/compressor/converter use the standard Canvas API.
 
-A few pieces in the pipeline:
+I keep recommending these to friends with iPhones who panic when their HEIC photos won't open on Windows.
 
-1. *10 Best Free PDF Tools 2026* — the pillar review. Smallpdf, ILovePDF, PDF24, Sejda, Stirling-PDF, and the underdogs that beat them all
-2. *PDF to Markdown for AI workflows* — practical guide for feeding long documents to Claude or ChatGPT
-3. *ChatGPT vs Claude for document work* — head-to-head with real prompts on real PDFs
-4. *Best AI tools for solo developers 2026* — the stack I actually run, with prices
+### AI (9 tools)
 
-Bookmark, check back weekly, or follow on [Twitter](https://twitter.com/pickrack) for new posts.
+Six are Claude-backed text tools — **summarizer, translator (20 languages), grammar checker, document translator, chat-with-PDF, and YouTube summarizer** — and three are GPU-backed image tools: **AI upscaler, image-to-image, and QR-art generator.** They all need a server because the models are too large for the browser. The text tools call Anthropic's Claude Haiku 4.5 API; only text is ever sent to Anthropic — for chat-with-PDF and document translator the text is extracted from your upload server-side, in a temp dir that's deleted immediately. The image tools run on a self-hosted GPU worker (Stable Diffusion / Swin2SR). Per-IP rate limit is 10 requests per 24 hours, generous enough for occasional use, tight enough to keep my Anthropic bill predictable.
 
-— Pick Rack
+If you self-host Pickrack from the [GitHub repo](https://github.com/pickrack/pickrack), set your own `ANTHROPIC_API_KEY` and the rate limit can be adjusted or removed.
+
+### Dev (14 tools)
+
+The category I use most myself: **JSON formatter, Base64 encoder/decoder, JWT decoder, hash generator (MD5/SHA-1/SHA-256/SHA-512), UUID generator (1-1000 bulk), regex tester, diff checker, timestamp converter, gradient generator, color converter, URL encoder, HTML-entity encoder, SQL formatter (11 dialects), and YAML↔JSON converter.** All fourteen are browser-only — Web Crypto API for hashes, native `Intl` for things like collation, a tiny bit of regex testing logic.
+
+These tools were originally for me. I'd open a separate site every time I needed to decode a JWT. Now they all live in one place, on a domain I trust, with no ads above the fold for AI tools and dev tools (the user-base is technical and ad-blockers are universal).
+
+### Text (10 tools)
+
+**Word counter, case converter (9 variants), lorem ipsum generator, slug generator, Markdown→HTML, find-and-replace, line numberer, duplicate remover, line sorter, and word-frequency counter.** The slug generator handles Vietnamese diacritics correctly (NFD normalize plus the special-case `đ → d` rule, which most generic slugifiers miss). Standard JavaScript, browser-only.
+
+### Calc (13 tools)
+
+**Password generator, QR code generator (URL/text/Wi-Fi/vCard/email, PNG and SVG output), QR batch + QR scanner, age calculator, BMI calculator, tip calculator, percentage calculator, mortgage calculator, contrast checker, Pomodoro timer, random picker, and currency converter.** All browser-only except the currency converter, which fetches live FX rates through a server-side proxy (to keep the API key off the client). The QR generator uses `qrcode.js` for the encoding. The password generator uses `crypto.getRandomValues` from the Web Crypto API — never `Math.random`, which is not cryptographically secure.
+
+## Why "free" with no quota?
+
+The pattern of free-with-quota is a sales funnel, not a free tool. The real product is the upsell. Once you accept that frame, every "free" tool site becomes adversarial: how can they nag you, watermark you, throttle you, until you cave?
+
+I don't have an upsell. **There is no Pickrack Pro.** The site is funded by:
+
+1. **Display ads** on text-content pages (blog posts, hub pages). Not on the AI tool pages, where ads would degrade the experience.
+2. **Affiliate links** on review posts, when I genuinely use a paid tool myself. Always disclosed at the top of any post that has them.
+3. **Self-host** is encouraged. The whole site is MIT-licensed open source. If you want to run it yourself, the README tells you how.
+
+That's the entire business model. There's no Series A pressure, no investor demanding 10× growth, no roadmap to convert free users into paying ones. The site exists because tools should be free.
+
+## What "privacy-first" actually means here
+
+The phrase is overused, so it's worth being concrete. Pickrack's privacy claims are:
+
+- **56 of 76 tools** run entirely in your browser. Your file stays on your device, full stop.
+- **10 PDF tools** that need server processing (compress, unlock, protect, Word/PPTX/EPUB conversion, Markdown extract): files are written to `/tmp`, processed, response streamed back, and the temp directory deleted in a `finally` block. There is no database. There is no cloud storage bucket. The Linux process holding the file dies, and the file is gone.
+- **9 AI tools**: the six Claude-backed text tools send only text to Anthropic's API (for chat-with-PDF and the document translator, the text is extracted from your upload server-side first, then the temp file is deleted). Anthropic's data policy: API prompts are not used for training and are deleted within 30 days. The three image tools run on a self-hosted GPU worker, so your image never leaves infrastructure I control. I don't add my own logging on top.
+- **1 calculator** (currency converter) sends only the currency codes to a live FX-rate API — never any of your data.
+- **The code is public.** You can read [`lib/libreoffice.ts`](https://github.com/pickrack/pickrack/blob/main/lib/libreoffice.ts), [`lib/anthropic.ts`](https://github.com/pickrack/pickrack/blob/main/lib/anthropic.ts), [`app/api/pdf/compress/route.ts`](https://github.com/pickrack/pickrack/blob/main/app/api/pdf/compress/route.ts), and verify every claim above.
+
+That last point matters. "Privacy-first" with closed source is a marketing claim. Privacy-first with open source is a falsifiable statement. I want anyone with skepticism to be able to check.
+
+## What's coming next
+
+Most of the roadmap from when this post first went up has since shipped — chat-with-PDF, the YouTube summarizer, and the document translator on the AI side; image cropper and upscaler, color-palette extractor, and the currency/BMI/tip calculators on the long-tail side; plus GPU-backed AI image tools (upscale, image-to-image, QR-art). A few directions still ahead, roughly in priority order:
+
+1. **Search inside the tool catalog.** With 76 tools today and growing, finding the right one is the next UX problem.
+2. **Self-host quickstart**: a Dockerfile and `docker-compose.yml` that boots Pickrack with all the system binaries (LibreOffice, Calibre, qpdf, Ghostscript, Poppler) baked in. PR welcome.
+3. **Localization.** The site is English-first today. Vietnamese first, then Spanish or another major language depending on which countries the analytics show the most traffic from.
+
+## How to follow along
+
+- **GitHub**: [github.com/pickrack/pickrack](https://github.com/pickrack/pickrack) — issues and discussions enabled, MIT license
+- **Twitter/X**: [@pickrackdev](https://twitter.com/pickrackdev) — release notes and behind-the-scenes
+- **Email**: hello@pickrack.com — for anything substantive that doesn't fit a tweet
+
+Bookmark the homepage. Star the repo if you find it useful. Open an issue if a tool has a bug or you wish a tool existed. That's how this gets better.
+
+— Minh

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+
+  <!-- Browser chrome -->
+  <rect x="60" y="60" width="1080" height="600" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="60" y="60" width="1080" height="42" rx="12" fill="#f1f5f9"/>
+  <circle cx="92" cy="81" r="6" fill="#ef4444"/>
+  <circle cx="112" cy="81" r="6" fill="#f59e0b"/>
+  <circle cx="132" cy="81" r="6" fill="#10b981"/>
+  <rect x="160" y="69" width="920" height="24" rx="12" fill="#e2e8f0"/>
+
+  <!-- Accent ribbon -->
+  <rect x="60" y="102" width="6" height="558" fill="#10b981"/>
+
+  <!-- Pending stamp -->
+  <g transform="translate(920, 130)">
+    <rect width="220" height="38" rx="6" fill="#f59e0b"/>
+    <text x="110" y="25" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">SCREENSHOT PENDING</text>
+  </g>
+
+  <!-- Title -->
+  <text x="100" y="220" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#0f172a">Same portrait — background removal across 4 free tools</text>
+
+  <!-- Sub -->
+  <text x="100" y="260" font-family="system-ui, sans-serif" font-size="18" font-weight="400" fill="#475569">Remove.bg vs Pickrack vs PhotoRoom vs Adobe Express free</text>
+
+  <!-- Mock content lines -->
+  <g opacity="0.4">
+    <rect x="100" y="310" width="1000" height="14" rx="3" fill="#94a3b8"/>
+    <rect x="100" y="340" width="940" height="14" rx="3" fill="#94a3b8"/>
+    <rect x="100" y="370" width="880" height="14" rx="3" fill="#94a3b8"/>
+    <rect x="100" y="420" width="220" height="40" rx="6" fill="#10b981"/>
+  </g>
+
+  <!-- Footer hint -->
+  <text x="600" y="630" font-family="system-ui, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Replace this placeholder with a real PNG capture. See SCREENSHOT-CHECKLIST.md for details.</text>
+</svg>

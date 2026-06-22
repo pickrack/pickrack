@@ -108,8 +108,11 @@ export default function Footer() {
         <div className="grid gap-6 sm:grid-cols-2 pt-8 border-t" style={{ borderColor: "var(--color-border)" }}>
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
             <Link href="/about" className="text-gray-600 hover:text-emerald-600">About</Link>
+            <Link href="/authors/david-pham/" className="text-gray-600 hover:text-emerald-600">Author</Link>
+            <Link href="/methodology/" className="text-gray-600 hover:text-emerald-600">Methodology</Link>
             <Link href="/contact" className="text-gray-600 hover:text-emerald-600">Contact</Link>
             <Link href="/blog" className="text-gray-600 hover:text-emerald-600">Blog</Link>
+            <a href="/blog/feed.xml" className="text-gray-600 hover:text-emerald-600">RSS</a>
             <Link href="/privacy" className="text-gray-600 hover:text-emerald-600">Privacy</Link>
             <Link href="/terms" className="text-gray-600 hover:text-emerald-600">Terms</Link>
             <Link href="/cookies" className="text-gray-600 hover:text-emerald-600">Cookies</Link>

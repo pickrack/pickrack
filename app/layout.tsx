@@ -55,26 +55,85 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: SITE_NAME,
+    url: `${SITE_URL}/`,
+    description: SITE_DESCRIPTION,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/logo.svg`,
+      width: 200,
+      height: 200,
+    },
+    founder: {
+      "@type": "Person",
+      "@id": `${SITE_URL}/authors/david-pham/#person`,
+      name: "David Pham",
+      url: `${SITE_URL}/authors/david-pham/`,
+      image: `${SITE_URL}/authors/david-pham-256.png`,
+      jobTitle: "Founder & Solo Developer",
+    },
+    foundingDate: "2026-04",
+    foundingLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "San Jose",
+        addressRegion: "CA",
+        addressCountry: "US",
+      },
+    },
+    sameAs: [
+      "https://twitter.com/pickrackdev",
+      "https://github.com/pickrack",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: "hello@pickrack.com",
+      availableLanguage: ["English"],
+    },
+  };
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
     name: SITE_NAME,
     url: `${SITE_URL}/`,
     description: SITE_DESCRIPTION,
     inLanguage: "en",
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: `${SITE_URL}/`,
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/blog/?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
     },
   };
 
   return (
     <html lang="en" className="h-full">
+      <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${SITE_NAME} blog feed`}
+          href="/blog/feed.xml"
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}

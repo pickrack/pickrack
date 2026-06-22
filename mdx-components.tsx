@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
 import type { ComponentProps } from "react";
+import Figure from "@/components/Figure";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -20,6 +21,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         </Link>
       );
     },
+    Figure,
     ...components,
   };
 }

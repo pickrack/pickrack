@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Shield, Zap, Lock, FileText, Image as ImageIcon, Sparkles, Code2, Type, Calculator } from "lucide-react";
 import PostCard from "@/components/PostCard";
+import ToolSearchBar from "@/components/ToolSearchBar";
+import PopularTools from "@/components/PopularTools";
+import SocialProof from "@/components/SocialProof";
+import HomepageFAQ from "@/components/HomepageFAQ";
+import ComparisonTable from "@/components/ComparisonTable";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { getAllPosts } from "@/lib/posts";
 import { TOOLS } from "@/lib/tools";
 import { listCategories, type Category } from "@/lib/categories";
@@ -69,6 +75,11 @@ export default function HomePage() {
         <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
           PDF, image, AI, developer, text, and calculator tools — all in one place. Most run in your browser so files never leave your device. No signup, no daily limit, no watermark.
         </p>
+
+        <div className="mt-8 w-full max-w-2xl mx-auto">
+          <ToolSearchBar />
+        </div>
+
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/tools"
@@ -93,11 +104,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      <SocialProof />
+
+      <PopularTools />
+
       {/* Category cards */}
       <section className="py-12 border-t" style={{ borderColor: "var(--color-border)" }}>
-        <div className="text-center max-w-2xl mx-auto mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Pick your toolkit</h2>
-          <p className="mt-3 text-gray-600">Six categories, one privacy-respecting site. Click a category to see every tool inside.</p>
+          <p className="mt-3 text-gray-600">Six categories spanning PDF, image, AI, developer, text, and calculator tools. Each runs fast, respects privacy, and needs no signup.</p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -121,7 +136,8 @@ export default function HomePage() {
                   </span>
                 </div>
                 <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-600 transition">{cat.name}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{cat.tagline}</p>
+                <p className="text-sm text-gray-600 leading-relaxed mb-2">{cat.tagline}</p>
+                <p className="text-xs text-gray-500 line-clamp-2">{cat.description}</p>
                 {tools.length > 0 && (
                   <div className="mt-4 pt-4 border-t flex flex-wrap gap-1.5" style={{ borderColor: "var(--color-border)" }}>
                     {tools.slice(0, 4).map((t) => (
@@ -174,6 +190,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <HomepageFAQ />
+
+      <ComparisonTable />
+
+      <NewsletterSignup />
 
       {/* Latest articles */}
       {posts.length > 0 && (

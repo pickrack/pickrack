@@ -17,9 +17,11 @@ type Props = {
   categoryId: CategoryId;
   /** Optional FAQ items shown at bottom of hub */
   faq?: { q: string; a: string }[];
+  /** Optional long-form intro rendered between header and tool grid (supports React nodes for headings, lists, tables) */
+  intro?: React.ReactNode;
 };
 
-export default function CategoryHub({ categoryId, faq = [] }: Props) {
+export default function CategoryHub({ categoryId, faq = [], intro }: Props) {
   const category = getCategory(categoryId);
   const tools = getToolsByCategory(categoryId).filter((t) => t.available);
   const Icon = CATEGORY_ICONS[category.iconName];
@@ -84,21 +86,21 @@ export default function CategoryHub({ categoryId, faq = [] }: Props) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       )}
 
-      <header className="mb-10 max-w-3xl">
+      <header className="mb-8">
         <div className={`inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider ${category.iconColor} ${category.bgColor} rounded-full px-3 py-1 mb-4`}>
-          <Icon className="w-3 h-3" /> Free {category.name}
+          <Icon className="w-3 h-3" /> Free {category.name} · {tools.length} tools
         </div>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
           {category.name} — {category.tagline}
         </h1>
-        <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+        <p className="mt-4 text-base text-gray-600 leading-relaxed">
           {category.description}
         </p>
       </header>
 
-      {/* Tool grid */}
+      {/* Tool grid — surfaced above the fold */}
       {tools.length > 0 ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-16">
           {tools.map((tool) => (
             <Link
               key={tool.slug}
@@ -117,7 +119,7 @@ export default function CategoryHub({ categoryId, faq = [] }: Props) {
           ))}
         </div>
       ) : (
-        <div className="rounded-2xl border bg-white p-10 text-center" style={{ borderColor: "var(--color-border)" }}>
+        <div className="rounded-2xl border bg-white p-10 text-center mb-16" style={{ borderColor: "var(--color-border)" }}>
           <p className="text-gray-600">More {category.shortLabel.toLowerCase()} tools coming soon.</p>
           <Link href="/tools" className="mt-3 inline-flex items-center gap-1 text-emerald-600 hover:text-emerald-700 font-medium text-sm">
             Browse other tools →
@@ -125,8 +127,15 @@ export default function CategoryHub({ categoryId, faq = [] }: Props) {
         </div>
       )}
 
+      {/* Optional long-form intro — below the tool grid so users see tools first */}
+      {intro && (
+        <section className="mb-16 prose prose-base max-w-none prose-headings:tracking-tight prose-h2:text-xl prose-h2:font-bold prose-p:leading-relaxed prose-li:leading-relaxed">
+          {intro}
+        </section>
+      )}
+
       {/* Why use these tools */}
-      <section className="mt-16 max-w-3xl">
+      <section>
         <h2 className="text-2xl font-bold tracking-tight mb-4">Why use these tools?</h2>
         <ul className="space-y-3 text-gray-700 leading-relaxed">
           <li><strong>Privacy first.</strong> Browser-side tools process your data locally. Server-side tools are explicitly labeled and delete inputs immediately after response.</li>
@@ -138,7 +147,7 @@ export default function CategoryHub({ categoryId, faq = [] }: Props) {
 
       {/* FAQ */}
       {faq.length > 0 && (
-        <section className="mt-16 max-w-3xl">
+        <section className="mt-16">
           <h2 className="text-2xl font-bold tracking-tight mb-6">Frequently asked</h2>
           <div className="space-y-4">
             {faq.map((item, i) => (
